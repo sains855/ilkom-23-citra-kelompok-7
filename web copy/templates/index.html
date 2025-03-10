@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Grayscale Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" id="imageInput" accept="image/*" required>
+        <img id="preview" src="#" alt="Image Preview" style="display:none;">
+        <button type="submit">Process</button>
+    </form>
+
+    {% if original and processed %}
+        <h2>Original Image</h2>
+        <img src="{{ url_for('static', filename='uploads/' + original) }}" alt="Original Image">
+        <h2>Grayscale Image</h2>
+        <img src="{{ url_for('static', filename='processed/' + processed) }}" alt="Processed Image">
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
