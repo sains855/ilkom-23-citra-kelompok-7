@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreeyPix - Before After</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style/result.css"
+    <link rel="stylesheet" href="/style/result.css">
 </head>
 
 <body>
@@ -16,7 +16,6 @@
         <div class="nav">
             <a href="welcome.html">Home</a>
             <a href="#">Contact</a>
-            <a href="#">Login</a>
         </div>
     </div>
 
@@ -28,13 +27,13 @@
             <div class="frame">
                 <span>Original</span>
                 <!-- gambar original masuk sini -->
-                <img id="img-before" src="#" alt="Before">
+                <img id="img-before" src="{{ url_for('uploaded_image', filename=original) }}" alt="Before">
             </div>
 
             <div class="frame">
                 <span>Result</span>
                 <!-- gambar hasil grayscale masuk sini -->
-                <img id="img-after" src="#" alt="After">
+                <img id="img-after" src="{{ url_for('processed_image', filename=processed) }}" alt="After">
             </div>
         </div>
 
