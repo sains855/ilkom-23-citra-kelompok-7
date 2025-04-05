@@ -23,7 +23,6 @@ def serve_style(filename):
 def uploaded_image(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-# Route WEB untuk gambar hasil proses
 @app.route('/img_processed/<path:filename>')
 def processed_image(filename):
     return send_from_directory(app.config['PROCESSED_FOLDER'], filename)
@@ -32,7 +31,7 @@ def processed_image(filename):
 def serve_image(filename):
     return send_from_directory('img', filename)
 
-# Route untuk halaman WEB
+# ===============Route untuk halaman WEB===================
 
 @app.route('/') # halaman welcome
 def index():
@@ -40,6 +39,7 @@ def index():
 
 @app.route('/add_gambar', methods=['GET', 'POST']) #halaman add
 def add_gambar():
+    # Proses Upload gambar
     if request.method == 'POST':
         if 'image' not in request.files:
             return redirect(request.url)
