@@ -1,51 +1,33 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Animasi masuk untuk teks section (fade dan translate)
-    const textSection = document.querySelector(".text-section");
-    textSection.style.opacity = 0;
-    textSection.style.transform = "translateY(30px)";
-    
-    setTimeout(() => {
-        textSection.style.transition = "all 0.8s ease-out";
-        textSection.style.opacity = 1;
-        textSection.style.transform = "translateY(0)";
-    }, 300);
+document.addEventListener("DOMContentLoaded", function () {
+    const before = document.querySelector(".image-before");
+    const after = document.querySelector(".image-after");
 
-    // Efek hover untuk tombol
-    const button = document.querySelector(".btn");
-    button.addEventListener("mouseover", () => {
-        button.style.boxShadow = "0 8px 16px rgba(0,0,0,0.3)";
-    });
-    button.addEventListener("mouseout", () => {
-        button.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.2)";
-    });
+    // Inisialisasi: before tampil, after tersembunyi
+    before.style.opacity = "1";
+    after.style.opacity = "0";
 
-    // Animasi gambar muncul satu per satu
-    const images = document.querySelectorAll(".image-container");
-    images.forEach((img, index) => {
-        img.style.opacity = 0;
-        img.style.transform = "scale(0.8)";
-        setTimeout(() => {
-            img.style.transition = "all 0.8s ease";
-            img.style.opacity = 1;
-            img.style.transform = "scale(1)";
-        }, 500 + index * 300);
-    });
+    before.style.zIndex = "2";
+    after.style.zIndex = "1";
 
-    // Efek mengetik (typing effect)
-    const heading = document.querySelector(".text-section h1");
-    const fullText = heading.innerText;
-    heading.innerText = "";
-    let index = 0;
+    before.style.transition = "opacity 1s ease-in-out";
+    after.style.transition = "opacity 1s ease-in-out";
 
-    function typeEffect() {
-        if (index < fullText.length) {
-            heading.innerText += fullText.charAt(index);
-            index++;
-            setTimeout(typeEffect, 100); // kecepatan mengetik
+    let isBeforeVisible = true;
+
+    setInterval(() => {
+        if (isBeforeVisible) {
+            before.style.opacity = "0";
+            after.style.opacity = "1";
+            before.style.zIndex = "1";
+            after.style.zIndex = "2";
+        } else {
+            before.style.opacity = "1";
+            after.style.opacity = "0";
+            before.style.zIndex = "2";
+            after.style.zIndex = "1";
         }
-    }
 
-    setTimeout(() => {
-        typeEffect(); // mulai efek mengetik setelah teks fade-in
-    }, 1000);
+        isBeforeVisible = !isBeforeVisible;
+    }, 5000); // Ganti gambar setiap 5 detik
 });
+
