@@ -50,7 +50,7 @@ body {
 }
 .image-container {
     position: absolute;
-    width: 250px;
+    width: 100%;
 }
 .image-container img {
     width: 100%;
@@ -67,8 +67,8 @@ body {
     left: 0;
 }
 .image-after {
+    top: 0;
     bottom: 0;
-    right: 0;
 }
 .header {
     display: flex;
