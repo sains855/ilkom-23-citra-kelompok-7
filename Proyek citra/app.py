@@ -19,6 +19,11 @@ os.makedirs(app.config['PROCESSED_FOLDER'], exist_ok=True)
 def serve_style(filename):
     return send_from_directory('style', filename)
 
+@app.route('/script/<path:filename>')
+def serve_script(filename):
+    return send_from_directory('script', filename)
+
+
 @app.route('/img_upload/<path:filename>')
 def uploaded_image(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
