@@ -8,7 +8,6 @@
     background: linear-gradient(to right, #e6e6e6, #e6c07a);
     color: #000;
   }
-
   header {
     display : flex;
     justify-content: space-between;
@@ -27,3 +26,19 @@
   nav a:hover {
     text-decoration: underlina;
   }
+  .hero {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .hero p {
+    font-size: 14px;
+    color: #444;
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.6;
+  } 
