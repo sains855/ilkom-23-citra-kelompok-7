@@ -8,4 +8,22 @@
     background: linear-gradient(to right, #e6e6e6, #e6c07a);
     color: #000;
   }
-  
+
+  header {
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px;
+  }
+  header h1 {
+    font-size:28px;
+  }
+  nav a {
+    margin-left:20px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+  }
+  nav a:hover {
+    text-decoration: underlina;
+  }
