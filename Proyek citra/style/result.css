@@ -42,3 +42,26 @@
     margin: auto;
     line-height: 1.6;
   } 
+  .image-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 60px 0;
+  }
+  .image-box {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 10px;
+    transition: transform 0.3s ease;
+  }
+  .image-box:hover {
+    transform: scale(1.03);
+  }
+  .image-box img {
+    max-width: 100%;
+    display: block;
+    border-radius: 10px;
+  }
