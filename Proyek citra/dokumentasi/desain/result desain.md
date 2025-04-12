@@ -21,6 +21,39 @@
 
 - Penempatan ini mempercepat pemahaman pengguna tentang fungsi utama website tanpa harus menjelajahi lebih dalam.
 
+4. Tampilan Visual Perbandingan Gambar
+- Halaman menampilkan dua gambar sebagai perbandingan proses konversi warna ke hitam putih,
+
+Gambar kiri berlabel "Original" menunjukkan versi berwarna.
+
+Gambar kanan berlabel "Result" menampilkan hasil gambar hitam putih.
+
+- lustrasi ini membuat pengguna langsung memahami manfaat layanan bahkan tanpa membaca teks panjang.
+
+- Penataan horizontal dua gambar ini menunjukkan proses transformasi secara intuitif.
+
+5. Tombol Aksi Utama (Call-To-Action)
+- Di bawah gambar, terdapat tombol besar berlabel "Download", yang mendorong <pengguna untuk mengunduh hasil gambar yang sudah diproses.
+
+- Tombol berwarna cokelat terang ini memberikan kontras visual dengan latar dan memicu tindakan karena posisinya strategis dan ukurannya cukup besar.
+
+- Tombol ini menjadi interaksi pertama pengguna terhadap layanan yang ditawarkan.
+
+6. Penjelasan Salah (untuk commit tambahan) 
+- Gambar hasil (Result) di bagian kanan halaman sebenarnya diberi efek blur untuk menyamarkan wajah demi alasan privasi pengguna.
+
+8. Kesan Keseluruhan UX/UI
+- Desain halaman menunjukkan perencanaan UX/UI yang matang, dengan memperhatikan alur pengguna, penempatan elemen visual, serta tujuan fungsional dari website.
+
+- Informasi layanan bisa langsung dipahami tanpa perlu menggulir (scroll), mendukung prinsip desain efektif: cepat, jelas, langsung ke tujuan.
+
+- Kombinasi elemen visual (gambar), teks, dan tombol menjadikan pengalaman pengguna terasa interaktif namun tetap sederhana.
+
+- Desain ini cocok untuk berbagai kalangan, bahkan yang baru mengenal teknologi sekalipun, karena tampilannya intuitif dan inklusif.
+
+
+
+
 
 
 
