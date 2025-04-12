@@ -78,3 +78,41 @@
   .image-wrapper {
     position: relative;
   }
+  .download-btn {
+    display: block;
+    margin: 0 auto 80px;
+    background-color: #d39660;
+    color: white;
+    font-size: 20px;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .download-btn:hover {
+    background-color: #a86f47;
+  }
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .image-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero h2 {
+    font-size: 36px;
+  }
+}
+nav a.active {
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+.image-box img {
+  transition: filter 0.3s ease;
+}
+.image-box:hover img {
+  filter: brightness(1.1);
+}
