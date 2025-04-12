@@ -42,6 +42,16 @@ Gambar kanan berlabel "Result" menampilkan hasil gambar hitam putih.
 6. Penjelasan Salah (untuk commit tambahan) 
 - Gambar hasil (Result) di bagian kanan halaman sebenarnya diberi efek blur untuk menyamarkan wajah demi alasan privasi pengguna.
 
+8. Kesan Keseluruhan UX/UI
+- Desain halaman menunjukkan perencanaan UX/UI yang matang, dengan memperhatikan alur pengguna, penempatan elemen visual, serta tujuan fungsional dari website.
+
+- Informasi layanan bisa langsung dipahami tanpa perlu menggulir (scroll), mendukung prinsip desain efektif: cepat, jelas, langsung ke tujuan.
+
+- Kombinasi elemen visual (gambar), teks, dan tombol menjadikan pengalaman pengguna terasa interaktif namun tetap sederhana.
+
+- Desain ini cocok untuk berbagai kalangan, bahkan yang baru mengenal teknologi sekalipun, karena tampilannya intuitif dan inklusif.
+
+
 
 
 
