@@ -1,5 +1,4 @@
 
-
 1. *Konsep Umum Desain Halaman*
     - Desain halaman utama GreeyPix dirancang dengan mengusung konsep minimalis modern, yaitu dengan  
       menampilkan elemen-elemen yang sederhana namun memiliki fungsi yang jelas dan tidak berlebihan.
