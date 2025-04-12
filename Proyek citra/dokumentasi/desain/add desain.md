@@ -1,2 +1,3 @@
-1. Deskripsi Umum
+1. Deskripsi Umum Desain Penambahan Gambar
+
 Fitur ini memungkinkan pengguna untuk mengubah gambar berwarna menjadi gambar greyscale (skala abu-abu) secara cepat dan mudah. Hanya dengan mengunggah gambar, sistem akan secara otomatis memproses dan menampilkan hasil dalam format hitam-putih tanpa memerlukan aplikasi edit foto tambahan.
