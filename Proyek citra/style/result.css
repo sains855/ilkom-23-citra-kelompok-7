@@ -116,29 +116,3 @@ nav a.active {
 .image-box:hover img {
   filter: brightness(1.1);
 }
-/* Dark Mode (Opsional) */
-body.dark-mode {
-  background: #1e1e1e;
-  color: #fff;
-}
-body.dark-mode .image-box {
-  background: #333;
-}
-body.dark-mode nav a {
-  color: #fff;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background: #c18b5c;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #a86f47;
-}
