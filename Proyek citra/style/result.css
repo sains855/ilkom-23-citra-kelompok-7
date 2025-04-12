@@ -78,3 +78,18 @@
   .image-wrapper {
     position: relative;
   }
+  .download-btn {
+    display: block;
+    margin: 0 auto 80px;
+    background-color: #d39660;
+    color: white;
+    font-size: 20px;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .download-btn:hover {
+    background-color: #a86f47;
+  }
