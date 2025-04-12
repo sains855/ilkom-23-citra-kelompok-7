@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 import os
 import cv2
 
-# Membaca file di folder view
+# Membaca folder view
 app = Flask(__name__, template_folder='view')
 
 # config folder upload dan hasil proses
