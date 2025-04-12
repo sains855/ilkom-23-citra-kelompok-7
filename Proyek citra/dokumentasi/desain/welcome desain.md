@@ -1,9 +1,8 @@
 
+
 1. *Konsep Umum Desain Halaman*
     - Desain halaman utama GreeyPix dirancang dengan mengusung konsep minimalis modern, yaitu dengan  
-      menampilkan elemen-elemen yang sederhana namun memiliki fungsi yang jelas dan tidak berlebihan.
-    - Penempatan elemen visual dan teks dilakukan dengan tata letak yang seimbang dan rapi, sehingga  
-      pengguna tidak merasa bingung atau terbebani saat melihat tampilan halaman.
+      menampilkan elemen-elemen yang sederhana namun memiliki fungsi yang jelas dan tidak berlebihan. 
     - Latar belakang berwarna cokelat muda dipilih sebagai dasar visual karena memberikan nuansa yang hangat, 
       alami, dan ramah di mata. Warna ini juga menambah kesan profesional dan tenang bagi pengguna baru yang 
       pertama kali mengakses website.
