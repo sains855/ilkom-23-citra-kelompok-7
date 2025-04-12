@@ -93,3 +93,16 @@
   .download-btn:hover {
     background-color: #a86f47;
   }
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .image-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero h2 {
+    font-size: 36px;
+  }
+}
