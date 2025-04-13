@@ -1,7 +1,11 @@
 body {
   margin: 0;
   padding: 0;
+<<<<<<< HEAD
   background-color: #c4a886;
+=======
+  background: linear-gradient(135deg, #f1e6d6, #c4a886);
+>>>>>>> 565f15fc3c1ffb75355ca188c1712fa4403d054d
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
