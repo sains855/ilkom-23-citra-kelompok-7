@@ -29,5 +29,17 @@ Di pojok kanan atas halaman terdapat menu navigasi horizontal sederhana yang ter
 
 Menu ini membantu pengguna menjelajahi situs dengan mudah dan cepat. Jumlah menu yang sedikit menegaskan filosofi desain minimalis dan membuat pengguna tetap fokus pada fungsi utama situs.
 
+5. Kesan Keseluruhan dan UX/UI
+
+Tampilan halaman menunjukkan user interface (UI) yang bersih, modern, dan user-friendly. Struktur informasi dan penempatan elemen sudah dirancang secara strategis agar:
+
+-Fungsi layanan mudah dipahami dalam waktu singkat
+
+-Pengguna langsung diarahkan ke aksi utama (upload gambar)
+
+-Navigasi situs tetap intuitif bahkan bagi pengguna baru
+
+Desain ini tidak hanya estetik tapi juga efisien secara UX (User Experience). Dengan hanya satu layar, pengguna sudah bisa memahami, melihat contoh hasil, dan langsung menggunakan layanan tanpa perlu menggulir halaman atau membuka menu tambahan.
+
 
 
