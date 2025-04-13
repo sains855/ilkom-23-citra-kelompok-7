@@ -1,5 +1,17 @@
-
-
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: #c4a886;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 50px;
+    animation: fadeIn 1.5s ease-in-out;
+}
 .text-section {
     max-width: 50%;
     text-align: left;
