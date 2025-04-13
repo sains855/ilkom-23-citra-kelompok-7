@@ -27,9 +27,11 @@ body {
 .nav a {
   text-decoration: none;
   margin-left: 25px;
-  color: #3d2c1e;
-  font-weight: 600;
-  transition: color 0.3s;
+  color: #b56b6b;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+  font-family: 'Poppins', sans-serif;
 }
 
 .nav a:hover {
