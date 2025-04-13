@@ -8,7 +8,7 @@ body {
 .container {
     display: flex;
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
     padding: 50px;
     animation: fadeIn 1.5s ease-in-out;
 }
@@ -50,7 +50,7 @@ body {
 }
 .image-container {
     position: absolute;
-    width: 100%;
+    width: 250px;
 }
 .image-container img {
     width: 100%;
@@ -67,8 +67,8 @@ body {
     left: 0;
 }
 .image-after {
-    top: 0;
     bottom: 0;
+    right: 0;
 }
 .header {
     display: flex;
