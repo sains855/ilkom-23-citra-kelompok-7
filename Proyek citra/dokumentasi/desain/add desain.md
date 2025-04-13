@@ -10,7 +10,22 @@ Pemilihan bunga matahari sebagai objek juga memperkuat kesan estetika alami, dan
 3. Fokus Informasi di Sisi Kanan Halaman
 
 Sisi kanan halaman berisi informasi penting mengenai layanan GreyPix. Komponen utamanya meliputi:
+
 -Judul besar "GreyScale" yang dicetak tebal untuk mencuri perhatian pengguna begitu mereka membuka halaman.
+
 -Deskripsi singkat yang menjelaskan bahwa GreyScale adalah teknik pengolahan gambar ke dalam skala abu-abu. Penjelasan ini ditulis dengan bahasa yang mudah dipahami dan langsung menggambarkan manfaat layanan kepada pengguna.
+
 -Call-to-Action (CTA) berupa tombol "Upload Image", yang menjadi pusat interaksi utama. Tombol ini didesain menonjol dengan warna oranye terang, memberikan kontras yang kuat terhadap latar dan mengarahkan pengguna untuk segera mencoba fitur unggahan.
+
+4. Navigasi dan Aksesibilitas
+
+Di pojok kanan atas halaman terdapat menu navigasi horizontal sederhana yang terdiri dari:
+
+Home
+
+Contact
+
+Login
+
+Menu ini membantu pengguna menjelajahi situs dengan mudah dan cepat. Jumlah menu yang sedikit menegaskan filosofi desain minimalis dan membuat pengguna tetap fokus pada fungsi utama situs.
 
