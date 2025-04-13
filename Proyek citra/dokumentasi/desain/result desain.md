@@ -1,5 +1,6 @@
 1. Konsep Umum Desain Halaman
--	Desain halaman utama GreeyPix mengusung gaya minimalis modern, dengan penggunaan elemen-elemen yang sederhana, fungsional, dan tidak berlebihan.
+-	Desain halaman utama GreeyPix mengusung gaya minimalis modern, dengan penggunaan elemen-elemen yang 
+sederhana, fungsional, dan tidak berlebihan.
 
 -	Elemen visual serta teks ditata secara simetris dan terpusat, memberikan kesan rapi serta memudahkan pengguna dalam mengenali fitur utama dari halaman.
 
@@ -35,7 +36,8 @@ Gambar kanan berlabel "Result" menampilkan hasil gambar hitam putih.
 5. Tombol Aksi Utama (Call-To-Action)
 - Di bawah gambar, terdapat tombol besar berlabel "Download", yang mendorong <pengguna untuk mengunduh hasil gambar yang sudah diproses.
 
-- Tombol berwarna cokelat terang ini memberikan kontras visual dengan latar dan memicu tindakan karena posisinya strategis dan ukurannya cukup besar.
+- Tombol berwarna cokelat terang ini memberikan kontras visual dengan latar dan memicu tindakan karena 
+posisinya strategis dan ukurannya cukup besar.
 
 - Tombol ini menjadi interaksi pertama pengguna terhadap layanan yang ditawarkan.
 
@@ -50,7 +52,6 @@ Gambar kanan berlabel "Result" menampilkan hasil gambar hitam putih.
 - Kombinasi elemen visual (gambar), teks, dan tombol menjadikan pengalaman pengguna terasa interaktif namun tetap sederhana.
 
 - Desain ini cocok untuk berbagai kalangan, bahkan yang baru mengenal teknologi sekalipun, karena tampilannya intuitif dan inklusif.
-
 
 
 
