@@ -1,11 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-<<<<<<< HEAD
   background-color: #c4a886;
-=======
-  background: linear-gradient(135deg, #f1e6d6, #c4a886);
->>>>>>> 565f15fc3c1ffb75355ca188c1712fa4403d054d
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
@@ -18,13 +14,14 @@ body {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 .header h2 {
+  color: #b56b6b;
+  font-size: 28px;
+  font-weight: bold;
   font-family: 'Playfair Display', serif;
-  color: #3d2c1e;
-  font-size: 30px;
-  font-weight: 700;
 }
 
 .nav a {
