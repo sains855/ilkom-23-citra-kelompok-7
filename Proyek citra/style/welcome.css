@@ -1,0 +1,108 @@
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: #c4a886;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+.text-section {
+    max-width: 50%;
+    text-align: left;
+}
+.text-section h1 {
+    font-size: 42px;
+    font-weight: bold;
+    color: #3d2c1e;
+    font-family: 'Poppins', sans-serif;
+}
+.text-section p {
+    font-size: 18px;
+    color: #4e3b2a;
+    font-family: 'Poppins', sans-serif;
+}
+.btn {
+    background-color: #e19566;
+    padding: 12px 24px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+}
+.btn:hover {
+    transform: scale(1.1);
+    background-color: #d18358;
+}
+.images {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+.image-container {
+    position: absolute;
+    width: 250px;
+}
+.image-container img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+.image-container:hover img {
+    transform: scale(1.08);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+.image-before {
+    top: 0;
+    left: 0;
+}
+.image-after {
+    bottom: 0;
+    right: 0;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out;
+}
+.header h2 {
+    color: #b56b6b;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+.nav a {
+    text-decoration: none;
+    margin-left: 25px;
+    color: #b56b6b;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+}
+.nav a:hover {
+    color: #e19566;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
