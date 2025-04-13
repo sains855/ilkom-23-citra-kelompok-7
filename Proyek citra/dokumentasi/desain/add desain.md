@@ -20,6 +20,7 @@ Sisi kanan halaman berisi informasi penting mengenai layanan GreyPix. Komponen u
 4. Navigasi dan Aksesibilitas
 
 Di pojok kanan atas halaman terdapat menu navigasi horizontal sederhana yang terdiri dari:
+
 -Home
 -Contact
 -Login
