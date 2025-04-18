@@ -60,6 +60,23 @@
     text-align: center;
   }
   
+  .btn {
+    background-color: #e19566;
+    padding: 12px 24px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  background-color: #d18358;
+}
   .text-section h1 {
     font-size: 36px;
     font-weight: bold;

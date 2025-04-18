@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreeyPix</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="/style/welcome.css">
-   
 </head>
 <body>
     <div class="header">
@@ -16,21 +16,57 @@
             <a href="/add_gambar">Tambah Gambar</a>
         </div>
     </div>
-    <div class="container">
-        <div class="images">
-            <div class="image-container image-before">
-                <img src="/img/image-before.jpg" alt="Gambar contoh greyscale">
+
+    <div class="slider-wrapper">
+        <div class="slider" id="slider">
+            <!-- Halaman 1: Grayscale -->
+            <div class="container slide-page-1">
+                <div class="images">
+                    <div class="image-container image-before">
+                        <img src="/img/image-before.jpg" alt="Gambar contoh greyscale">
+                    </div>
+                    <div class="image-container image-after">
+                        <img src="/img/image-after.jpg" alt="Gambar contoh greyscale">
+                    </div>
+                </div>
+                <div class="text-section">
+                    <h1>WELCOME TO <br><strong>GreeyPix</strong></h1>
+                    <p>Dengan GreeyPix, Anda dapat mengabadikan momen dalam skala keabuan</p>
+                    <a href="/add_gambar"><button class="btn">Get Started</button></a>
+                </div>
             </div>
-            <div class="image-container image-after">
-                <img src="/img/image-after.jpg" alt="Gambar contoh greyscale">
+
+            <!-- Halaman 2: Remove Background -->
+            <div class="container slide-page-2">
+                <div class="images">
+                    <div class="image-container image-after-removebg">
+                            <!-- <img src="../img/image-after-removebg.jpg" alt="Contoh remove background"> -->
+                            <img src="../img/contoh.png" alt="Contoh remove background">
+                    </div>
+                </div>
+                <div class="text-section">
+                    <h1>Fitur Remove Background</h1>
+                    <p>Hilangkan latar belakang gambar secara otomatis dengan GreeyPix</p>
+                    <a href="/remove_background"><button class="btn">Coba Sekarang</button></a>
+                </div>
             </div>
         </div>
-        <div class="text-section">
-            <h1>WELCOME TO <br><strong>GreeyPix</strong></h1>
-            <p>Dengan GreeyPix, Anda dapat mengabadikan momen dalam skala keabuan</p>
-            <a href="/add_gambar"><button class="btn">Get Started</button></a>
+
+        <!-- Tombol Navigasi -->
+        <button class="nav-arrow left" onclick="goToSlide(0)">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <button class="nav-arrow right" onclick="goToSlide(1)">
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
     </div>
-</div>
-<script src="/script/welcome.js"></script>
+
+    <script>
+        function goToSlide(index) {
+            const slider = document.getElementById("slider");
+            slider.style.transform = `translateX(-${index * 100}vw)`;
+        }
+    </script>
+    <script src="../script/welcome.js"></script>
 </body>
 </html>

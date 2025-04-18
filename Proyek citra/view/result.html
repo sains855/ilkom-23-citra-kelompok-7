@@ -26,14 +26,15 @@
         <div class="before-after">
             <div class="frame">
                 <span>Original</span>
-                <!-- gambar original masuk sini -->
-                <img id="img-before" src="{{ url_for('uploaded_image', filename=original) }}" alt="Before">
+                <!-- Tambahkan style untuk memastikan gambar muncul -->
+                <img id="img-before" src="{{ url_for('uploaded_image', filename=original) }}" 
+                    alt="Before" style="width:100%; display:block;">
             </div>
 
             <div class="frame">
                 <span>Result</span>
-                <!-- gambar hasil grayscale masuk sini -->
-                <img id="img-after" src="{{ url_for('processed_image', filename=processed) }}" alt="After">
+                <img id="img-after" src="{{ url_for('processed_image', filename=processed) }}" 
+                    alt="After" style="width:100%; display:block;">
             </div>
         </div>
 
