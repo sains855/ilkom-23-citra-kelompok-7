@@ -1,90 +1,131 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body {
-    background-color: #cba977; 
-    color: #1a1a1a;
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-  }
-  
-  .navbar .logo {
-    font-weight: bold;
-    font-size: 24px;
-  }
-  
-  .navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-  }
-  
-  .navbar ul li a {
-    text-decoration: none;
-    color: #1a1a1a;
-    font-size: 16px;
-    transition: color 0.3s ease;
-  }
-  
-  .navbar ul li a:hover {
-    color: #333;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 40px;
-    gap: 60px;
-    flex-wrap: wrap;
-  }
-  
-  .image-section img {
-    max-width: 400px;
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  }
-  
-  .text-section {
-    max-width: 500px;
-    text-align: center;
-  }
-  
-  .text-section h1 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .text-section p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-  }
-  
-  .upload-button {
-    background-color: #d57736; 
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-  }
-  
-  .upload-button:hover {
-    background-color: #b85d27;
-  }
-  
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreyPix</title>
+  <style>
+    /* Reset dan font dasar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #cba977; /* Warna cokelat muda */
+      color: #1a1a1a;
+    }
+
+    /* Navigasi */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+      color: #333;
+    }
+
+    /* Konten utama */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 40px;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    /* Gambar */
+    .image-section img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Konten teks */
+    .text-section {
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .text-section h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .text-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    /* Tombol Upload */
+    .upload-button {
+      background-color: #d57736; /* Oranye terang */
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+
+    .upload-button:hover {
+      background-color: #b85d27;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">GreyPix</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Login</a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <div class="image-section">
+      <img src="your-image.jpg" alt="Grayscale Conversion">
+    </div>
+    <div class="text-section">
+      <h1>GreyScale</h1>
+      <p>
+        GreyScale adalah teknik pengolahan gambar yang menggunakan skala keabu-abuan.
+        Dengan fitur unggah gambar kami, Anda dapat dengan mudah mengonversi foto berwarna
+        menjadi greyscale hanya dalam hitungan detik!
+      </p>
+      <p><strong>Klik untuk mengunggah gambar!</strong></p>
+      <button class="upload-button">Upload Image</button>
+    </div>
+  </div>
+</body>
+</html>
