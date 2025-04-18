@@ -40,6 +40,3 @@ Tampilan halaman menunjukkan user interface (UI) yang bersih, modern, dan user-f
 -Navigasi situs tetap intuitif bahkan bagi pengguna baru
 
 Desain ini tidak hanya estetik tapi juga efisien secara UX (User Experience). Dengan hanya satu layar, pengguna sudah bisa memahami, melihat contoh hasil, dan langsung menggunakan layanan tanpa perlu menggulir halaman atau membuka menu tambahan.
-
-
-

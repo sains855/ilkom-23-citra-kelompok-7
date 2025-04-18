@@ -56,5 +56,3 @@ posisinya strategis dan ukurannya cukup besar.
 
 
 
-
-
