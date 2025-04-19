@@ -44,7 +44,10 @@
             </div>
         </div>
 
-        <button class="download-btn">Download</button>
+        <a href="{{ url_for('processed_image', filename=processed) }}" download="{{ processed }}">
+            <button class="download-btn">Download</button>
+        </a>
+        
     </div>
     <script src="../script/result.js"></script>
 </body>
