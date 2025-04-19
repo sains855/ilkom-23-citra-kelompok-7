@@ -13,7 +13,9 @@
         <h2>GreeyPix</h2>
         <div class="nav">
             <a href="/">Home</a>
-            <a href="/add_gambar">Tambah Gambar</a>
+            <a href="/add_gambar">Grayscale</a>
+            <a href="/remove_background">Remove BG</a>
+            <a href="/convert_to_pdf">To PDF</a>
         </div>
     </div>
 
@@ -50,7 +52,24 @@
                     <a href="/remove_background"><button class="btn">Coba Sekarang</button></a>
                 </div>
             </div>
+
+            <!-- page 3 -->
+            <div class="container slide-page-3">
+                <div class="images">
+                    <div class="image-container image-pdf-example">
+                        <img src="/img/pdf-example.jpg" alt="PDF Conversion Example">
+                    </div>
+                </div>
+                <div class="text-section">
+                    <h1>Convert to PDF</h1>
+                    <p>Easily convert your images to PDF documents with GreeyPix</p>
+                    <a href="/convert_to_pdf"><button class="btn">Try Now</button></a>
+                </div>
+            </div>
         </div>
+
+        
+        
 
         <!-- Tombol Navigasi -->
         <button class="nav-arrow left" onclick="goToSlide(0)">
@@ -61,12 +80,6 @@
         </button>
     </div>
 
-    <script>
-        function goToSlide(index) {
-            const slider = document.getElementById("slider");
-            slider.style.transform = `translateX(-${index * 100}vw)`;
-        }
-    </script>
     <script src="../script/welcome.js"></script>
 </body>
 </html>

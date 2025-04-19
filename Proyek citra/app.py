@@ -4,6 +4,8 @@ import cv2
 from rembg import remove
 from PIL import Image
 import io
+from fpdf import FPDF
+import img2pdf
 
 # Membaca folder view
 app = Flask(__name__, template_folder='view')
@@ -116,6 +118,59 @@ def result_remove_bg():
         return redirect(url_for('index'))
     
     return render_template('result_remove_bg.html', original=original, processed=processed)
+
+
+
+
+# Add this config for PDF storage
+app.config['PDF_FOLDER'] = os.path.join('img', 'pdf_output')
+os.makedirs(app.config['PDF_FOLDER'], exist_ok=True)
+
+@app.route('/convert_to_pdf', methods=['GET', 'POST'])
+def convert_to_pdf():
+    if request.method == 'POST':
+        if 'image' not in request.files:
+            return redirect(request.url)
+        file = request.files['image']
+        if file.filename == '':
+            return redirect(request.url)
+        if file:
+            # Save original image
+            filename = file.filename
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(upload_path)
+            
+            # Convert to PDF
+            pdf_filename = os.path.splitext(filename)[0] + '.pdf'
+            pdf_path = os.path.join(app.config['PDF_FOLDER'], pdf_filename)
+            
+            # Using img2pdf (simple method)
+            with open(pdf_path, "wb") as f:
+                f.write(img2pdf.convert(upload_path))
+            
+            return redirect(url_for('result_pdf', 
+                                 original=filename, 
+                                 pdf_file=pdf_filename))
+    
+    return render_template('convert_pdf.html')
+
+@app.route('/result_pdf')
+def result_pdf():
+    original = request.args.get('original')
+    pdf_file = request.args.get('pdf_file')
+    
+    if not original or not pdf_file:
+        return redirect(url_for('index'))
+    
+    return render_template('result_pdf.html', 
+                         original=original, 
+                         pdf_file=pdf_file)
+
+@app.route('/download_pdf/<filename>')
+def download_pdf(filename):
+    return send_from_directory(app.config['PDF_FOLDER'], filename, as_attachment=True)
+
+
 # Run server
 
 if __name__ == '__main__':

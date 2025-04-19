@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreeyPix - Remove Background</title>
+    <title>GreeyPix - PDF Conversion</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style/add.css">
 </head>
 <body>
-
     <div class="header">
         <h2>GreeyPix</h2>
         <div class="nav">
@@ -18,14 +17,14 @@
 
     <div class="container">
         <div class="image-section">
-            <img src="/img/image-after-removebg.jpg" alt="Remove Background Example">
+            <img src="/img/pdf-example.jpg" alt="PDF Conversion Example">
         </div>
         <div class="text-section">
-            <h1>Remove Background</h1>
-            <p>Hilangkan latar belakang gambar Anda secara otomatis dengan teknologi AI yang canggih. Unggah gambar Anda dan dapatkan hasilnya dalam hitungan detik!</p>
-            <form action="/remove_background" method="POST" enctype="multipart/form-data" id="uploadForm">
+            <h1>Convert to PDF</h1>
+            <p>Transform your images into professional PDF documents with just one click!</p>
+            <form action="/convert_to_pdf" method="POST" enctype="multipart/form-data" id="uploadForm">
                 <input type="file" accept="image/*" name="image" id="fileInput" style="display: none;" onchange="document.getElementById('uploadForm').submit();">
-                <button class="btn" type="button" onclick="document.getElementById('fileInput').click();">Unggah Gambar</button>
+                <button class="btn" type="button" onclick="document.getElementById('fileInput').click();">Convert to PDF</button>
             </form>
         </div> 
     </div>

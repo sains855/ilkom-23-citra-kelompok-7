@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreeyPix - PDF Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/result.css">
+</head>
+<body>
+    <div class="header">
+        <h2>GreeyPix</h2>
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/convert_to_pdf">Convert Another</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Your PDF is Ready! 📄</h1>
+        <p>Your image has been successfully converted to PDF format.</p>
+
+        <div class="before-after">
+            <div class="frame">
+                <span>Original Image</span>
+                <img id="img-before" src="{{ url_for('uploaded_image', filename=original) }}" alt="Original Image">
+            </div>
+
+            <div class="frame">
+                <span>PDF Preview</span>
+                <div class="pdf-preview">
+                    <span class="material-symbols-outlined">picture_as_pdf</span>
+                    <p>PDF Document</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="{{ url_for('download_pdf', filename=pdf_file) }}">
+            <button class="download-btn">Download PDF</button>
+        </a>
+    </div>
+</body>
+</html>

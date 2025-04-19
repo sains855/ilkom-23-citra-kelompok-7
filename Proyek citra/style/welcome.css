@@ -130,11 +130,6 @@ body {
     overflow: hidden;
 }
 
-.slider {
-    display: flex;
-    width: 200vw;
-    transition: transform 0.5s ease-in-out;
-}
 
 .nav-arrow {
     position: absolute;
@@ -167,4 +162,36 @@ body {
     }
 }
 
+/* Add to your welcome.css or create a new CSS file */
+.pdf-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #e74c3c;
+}
 
+.pdf-preview .material-symbols-outlined {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+/* Update the slider width to accommodate 3 slides */
+.slider {
+    display: flex;
+    width: 300vw; /* Changed from 200vw to 300vw */
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Add specific styling for the PDF conversion slide */
+.slide-page-3 {
+    background-color: rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    gap: 50px;
+}
+
+.slide-page-3 .text-section {
+    max-width: 40%;
+    text-align: center;
+}
