@@ -167,4 +167,25 @@ body {
     }
 }
 
-
+.slide-page-2 .image-container {
+    position: absolute;
+    width: 100%;
+  }
+  
+  /* kondisi awal */
+  .image-before-removebg {
+    opacity: 1;
+    z-index: 2;
+  }
+  .image-after-removebg {
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  /* efek smooth fade */
+  .slide-page-2 .image-container img {
+    width: 100%;
+    border-radius: 10px;
+    transition: opacity 1s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s;
+  }
+  
