@@ -17,12 +17,12 @@ body {
 
 /* Class khusus halaman 1 */
 .slide-page-1 {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: #c4a886;
 }
 
 /* Class khusus halaman 2 */
 .slide-page-2 {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #c4a886;
     justify-content: center;
     gap: 50px;
 }
@@ -46,7 +46,7 @@ body {
 
 .text-section p {
     font-size: 18px;
-    color: #4e3b2a;
+    color: #3d2c1e;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -111,18 +111,21 @@ body {
     font-weight: bold;
     font-family: 'Playfair Display', serif;
 }
+
 .nav a {
-    text-decoration: none;
-    margin-left: 25px;
     color: #b56b6b;
-    font-size: 18px;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block; /* penting untuk transform */
     font-family: 'Poppins', sans-serif;
-}
-.nav a:hover {
-    color: #e19566;
-}
+    font-size: 18px;
+  }
+  
+  .nav a:hover {
+    transform: scale(1.2);
+  }
+  
 
 .slider-wrapper {
     position: relative;
@@ -135,7 +138,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(229, 13, 13, 0.4);
     color: white;
     border: none;
     font-size: 2rem;
@@ -195,3 +198,25 @@ body {
     max-width: 40%;
     text-align: center;
 }
+.slide-page-2 .image-container {
+    position: absolute;
+    width: 100%;
+  }
+  
+  /* kondisi awal */
+  .image-before-removebg {
+    opacity: 1;
+    z-index: 2;
+  }
+  .image-after-removebg {
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  /* efek smooth fade */
+  .slide-page-2 .image-container img {
+    width: 100%;
+    border-radius: 10px;
+    transition: opacity 1s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s;
+  }
+  
