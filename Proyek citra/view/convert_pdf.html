@@ -1,33 +1,53 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreeyPix - PDF Conversion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style/add.css">
+    <title>Convert to PDF - GreeyPix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/welcome.css">
 </head>
 <body>
     <div class="header">
         <h2>GreeyPix</h2>
         <div class="nav">
-            <a href="/">Home</a>
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/add_gambar"><i class="fas fa-image"></i> Grayscale</a>
+            <a href="/remove_background"><i class="fas fa-cut"></i> Remove BG</a>
+            <a href="/convert_to_pdf" class="active"><i class="fas fa-file-pdf"></i> To PDF</a>
         </div>
     </div>
 
-    <div class="container">
-        <div class="image-section">
-            <img src="/img/pdf-example.jpg" alt="PDF Conversion Example">
-        </div>
-        <div class="text-section">
-            <h1>Convert to PDF</h1>
-            <p>Transform your images into professional PDF documents with just one click!</p>
-            <form action="/convert_to_pdf" method="POST" enctype="multipart/form-data" id="uploadForm">
-                <input type="file" accept="image/*" name="image" id="fileInput" style="display: none;" onchange="document.getElementById('uploadForm').submit();">
-                <button class="btn" type="button" onclick="document.getElementById('fileInput').click();">Convert to PDF</button>
+    <div class="pdf-container">
+        <div class="upload-section">
+            <h1><i class="fas fa-file-pdf"></i> Convert Images to PDF</h1>
+            <p>Select multiple images to convert into a single PDF document</p>
+            
+            <form action="/convert_to_pdf" method="POST" enctype="multipart/form-data" id="pdfForm">
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop images here or click to browse</p>
+                    <input type="file" id="fileInput" name="images" multiple accept="image/*" style="display: none;">
+                </div>
+                <div id="previewContainer" class="preview-container"></div>
+                <button type="submit" class="btn convert-btn" disabled>
+                    <i class="fas fa-file-export"></i> Convert to PDF
+                </button>
             </form>
-        </div> 
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> How it works:</h3>
+            <ol>
+                <li>Select multiple images (JPG/PNG)</li>
+                <li>Images will be combined into one PDF</li>
+                <li>Download your PDF document</li>
+            </ol>
+        </div>
     </div>
-    <script src="/script/add.js"></script>
+
+    <script src="/script/pdf_converter.js"></script>
 </body>
 </html>
