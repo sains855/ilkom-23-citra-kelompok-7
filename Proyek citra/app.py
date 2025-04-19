@@ -78,10 +78,6 @@ def result_gambar():
 
     return render_template('result.html', original=filename, processed=filename)
 
-
-
-
-
 @app.route('/remove_background', methods=['GET', 'POST'])
 def remove_background():
     if request.method == 'POST':
