@@ -1,40 +1,62 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Grayscale slide
-    const before = document.querySelector(".image-before");
-    const after  = document.querySelector(".image-after");
-    before.style.opacity = "1"; after.style.opacity = "0";
-    before.style.zIndex  = "2"; after.style.zIndex  = "1";
-    before.style.transition = after.style.transition = "opacity 1s ease-in-out";
-    let isBeforeVisible = true;
-    setInterval(() => {
-      if (isBeforeVisible) {
-        before.style.opacity = "0"; before.style.zIndex = "1";
-        after.style.opacity  = "1"; after.style.zIndex  = "2";
+document.addEventListener("DOMContentLoaded", function() {
+  // Grayscale image transition
+  const grayscaleBefore = document.querySelector('.feature-card:nth-child(1) .before-image');
+  const grayscaleAfter = document.querySelector('.feature-card:nth-child(1) .after-image');
+  
+  // Remove BG image transition
+  const removeBgBefore = document.querySelector('.feature-card:nth-child(2) .before-image');
+  const removeBgAfter = document.querySelector('.feature-card:nth-child(2) .after-image');
+  
+  function toggleImages(before, after) {
+      const currentOpacity = parseFloat(window.getComputedStyle(before).opacity);
+      
+      if (currentOpacity === 1) {
+          before.style.opacity = '0';
+          after.style.opacity = '1';
       } else {
-        before.style.opacity = "1"; before.style.zIndex = "2";
-        after.style.opacity  = "0"; after.style.zIndex  = "1";
+          before.style.opacity = '1';
+          after.style.opacity = '0';
       }
-      isBeforeVisible = !isBeforeVisible;
-    }, 3000);
+  }
   
-    // Remove‑bg slide
-    const beforeBG = document.querySelector(".image-before-removebg");
-    const afterBG  = document.querySelector(".image-after-removebg");
-    beforeBG.style.opacity = "1"; afterBG.style.opacity = "0";
-    beforeBG.style.zIndex  = "2"; afterBG.style.zIndex  = "1";
-    beforeBG.style.transition = afterBG.style.transition = "opacity 1s ease-in-out";
-    let showBeforeBG = true;
-    setInterval(() => {
-      if (showBeforeBG) {
-        beforeBG.style.opacity = "0"; beforeBG.style.zIndex = "1";
-        afterBG.style.opacity  = "1"; afterBG.style.zIndex  = "2";
-      } else {
-        beforeBG.style.opacity = "1"; beforeBG.style.zIndex = "2";
-        afterBG.style.opacity  = "0"; afterBG.style.zIndex  = "1";
-      }
-      showBeforeBG = !showBeforeBG;
-    }, 3000);
+  // Set initial states
+  grayscaleBefore.style.opacity = '1';
+  grayscaleAfter.style.opacity = '0';
+  removeBgBefore.style.opacity = '1';
+  removeBgAfter.style.opacity = '0';
   
-  }); 
+  // Set intervals for automatic transitions
+  setInterval(() => {
+      toggleImages(grayscaleBefore, grayscaleAfter);
+  }, 3000);
   
->>>>>>> 240875e14c97cee727b19c690645253c075c7649
+  setInterval(() => {
+      toggleImages(removeBgBefore, removeBgAfter);
+  }, 3000);
+  
+  // Add hover effect for manual control
+  const featureCards = document.querySelectorAll('.feature-card');
+  featureCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+          const before = this.querySelector('.before-image');
+          const after = this.querySelector('.after-image');
+          if (before && after) {
+              before.style.transition = 'opacity 0.5s ease';
+              after.style.transition = 'opacity 0.5s ease';
+              before.style.opacity = '0';
+              after.style.opacity = '1';
+          }
+      });
+      
+      card.addEventListener('mouseleave', function() {
+          const before = this.querySelector('.before-image');
+          const after = this.querySelector('.after-image');
+          if (before && after) {
+              before.style.transition = 'opacity 0.5s ease';
+              after.style.transition = 'opacity 0.5s ease';
+              before.style.opacity = '1';
+              after.style.opacity = '0';
+          }
+      });
+  });
+});
