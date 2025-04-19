@@ -87,31 +87,35 @@ def remove_background():
         if file.filename == '':
             return redirect(request.url)
         if file:
-            filename = file.filename
-            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            # Simpan original dengan ekstensi asli
+            original_filename = file.filename
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
             file.save(upload_path)
 
             # Proses remove background
             input_image = Image.open(upload_path)
             output_image = remove(input_image)
             
-            # Simpan sebagai PNG untuk mempertahankan transparansi
-            base_filename = os.path.splitext(filename)[0]  # Hilangkan ekstensi
-            processed_filename = f"{base_filename}.png"
+            # Simpan hasil dengan ekstensi .png
+            base_name = os.path.splitext(original_filename)[0]
+            processed_filename = f"{base_name}.png"
             processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
             output_image.save(processed_path)
 
-            return redirect(url_for('result_remove_bg', filename=processed_filename))
+            return redirect(url_for('result_remove_bg', original=original_filename,processed=processed_filename))
 
     return render_template('remove_bg.html')
 
+
 @app.route('/result_remove_bg')
 def result_remove_bg():
-    filename = request.args.get('filename')
-    if not filename:
+    original = request.args.get('original')
+    processed = request.args.get('processed')
+    
+    if not original or not processed:
         return redirect(url_for('index'))
-
-    return render_template('result_remove_bg.html', original=filename, processed=filename)
+    
+    return render_template('result_remove_bg.html', original=original, processed=processed)
 # Run server
 
 if __name__ == '__main__':
