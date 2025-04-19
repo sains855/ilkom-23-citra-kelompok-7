@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         after.style.opacity  = "0"; after.style.zIndex  = "1";
       }
       isBeforeVisible = !isBeforeVisible;
-    }, 5000);
+    }, 3000);
   
     // Remove‑bg slide
     const beforeBG = document.querySelector(".image-before-removebg");
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         afterBG.style.opacity  = "0"; afterBG.style.zIndex  = "1";
       }
       showBeforeBG = !showBeforeBG;
-    }, 5000);
+    }, 3000);
   
   }); 
   
