@@ -386,21 +386,6 @@ def adjust_brightness():
     file = request.files['image']
     if file.filename == '':
         return "No selected file", 400
-
-    try:
-        image = Image.open(file.stream).convert('RGB')
-        # You may choose to extract brightness from a form field or fix it to 1.2 for example
-        brightness_factor = float(request.args.get('brightness', 1.2))
-        enhancer = ImageEnhance.Brightness(image)
-        bright_img = enhancer.enhance(brightness_factor)
-
-        img_io = io.BytesIO()
-        bright_img.save(img_io, 'PNG')
-        img_io.seek(0)
-
-        return send_file(img_io, mimetype='image/png')
-    except Exception as e:
-        return f"Error processing image: {str(e)}", 500
     
 if __name__ == '__main__':
     app.run(debug=True)
