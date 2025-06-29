@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brightness Adjustment - GreeyPix</title>
-  <link rel="stylesheet" href="/Proyek citra/style/brightnes.css" />
+  <link rel="stylesheet" href="/style/brightnes.css" />
 </head>
 <body>
   <header>
@@ -18,18 +18,51 @@
 
   <section class="feature">
     <div class="image-container">
-      <img id="preview" src="/Proyek citra/img/brightnes.png" alt="Before After Brightness">
+      <img id="preview" src="/img/brightnes.png" alt="Before After Brightness">
     </div>
     <div class="controls">
       <h2>Brightness Adjustment</h2>
       <p>Adjust the brightness of your image to enhance clarity and visual appeal.</p>
-      <input type="range" min="50" max="200" value="100" id="brightness-slider">
-      <p>Brightness: <span id="brightness-value">100%</span></p>
-      <button onclick="uploadImage()">Atur Brightness</button>
-      <input type="file" id="upload" accept="image/*" />
+      
+      <form action="/adjust" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" id="upload" accept="image/*" required />
+        <input type="range" min="0.5" max="2.0" value="1.0" step="0.1" id="brightness-slider" name="brightness">
+        <p>Brightness: <span id="brightness-value">1.0</span></p>
+        <button type="submit">Atur Brightness</button>
+      </form>
     </div>
   </section>
 
-  <script src="/Proyek citra/script/brightnes.js"></script>
+  <script>
+    const slider = document.getElementById('brightness-slider');
+    const valueDisplay = document.getElementById('brightness-value');
+    const preview = document.getElementById('preview');
+    const uploadInput = document.getElementById('upload');
+    
+    // Update brightness value display
+    slider.addEventListener('input', function() {
+      valueDisplay.textContent = this.value;
+      
+      // Apply brightness filter to preview image
+      if (uploadInput.files && uploadInput.files[0]) {
+        preview.style.filter = `brightness(${this.value})`;
+      }
+    });
+    
+    // Handle file upload and show preview
+    uploadInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.alt = "Preview Image";
+          // Apply current brightness value
+          preview.style.filter = `brightness(${slider.value})`;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
 </body>
 </html>
