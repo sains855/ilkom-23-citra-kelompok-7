@@ -368,12 +368,29 @@ def result_pdf():
     return render_template('result_pdf.html',
                            original_filenames=request.args.get('original_filenames', '').split(','),
                            pdf_file=request.args.get('pdf_file'))
+
+@app.route('/crop_image', methods=['GET', 'POST'])
+def crop_image():
+    return render_template('crop.html')
+
 @app.route('/result_crop')
 def result_crop():
     cropped = request.args.get('cropped')
     if not cropped:
         return "No cropped image found.", 400
     return render_template('result_crop.html', cropped=cropped)
+
+@app.route('/process_crop', methods=['POST'])
+def process_crop():
+    file = request.files.get('croppedImage')
+    if not file:
+        return "No image received", 400
+
+    filename = f"cropped_{datetime.now().strftime('%Y%m%d%H%M%S')}.png"
+    save_path = os.path.join(app.config['PROCESSED_FOLDER'], filename)
+    file.save(save_path)
+
+    return redirect(url_for('result_crop', cropped=filename))
 
 @app.route('/download_pdf/<filename>')
 def download_pdf(filename):
