@@ -437,27 +437,7 @@ def result_brightness():
 
 
 # **FITUR BARU: Efek Negatif (NumPy-based)**
-def numpy_negative_effect(img_array):
-    """
-    Apply negative effect to an image using NumPy.
-    For an 8-bit image, this means subtracting each pixel value from 255.
-    """
-    # Pastikan gambar adalah RGB, jika ada alpha channel, abaikan atau sesuaikan
-    if len(img_array.shape) == 3:
-        # Jika gambar adalah RGBA, terapkan negatif hanya pada channel RGB
-        if img_array.shape[2] == 4:
-            rgb_channels = img_array[..., :3]
-            negative_rgb = 255 - rgb_channels
-            # Gabungkan kembali dengan alpha channel asli
-            return np.dstack((negative_rgb, img_array[..., 3])).astype(np.uint8)
-        # Jika gambar adalah RGB
-        elif img_array.shape[2] == 3:
-            return (255 - img_array).astype(np.uint8)
-    # Jika gambar grayscale
-    elif len(img_array.shape) == 2:
-        return (255 - img_array).astype(np.uint8)
-    
-    return img_array # Kembalikan asli jika tidak dapat diproses
+
 
 
 # --- Rute Baru untuk Efek Negatif (Belum ada logika pemrosesan gambar) ---
