@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negative Effect Result - GreeyPix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/result.css"> 
+</head>
+<body>
+    <div class="header">
+        <h2>GreeyPix</h2>
+        <div class="nav">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/add_gambar"><i class="fas fa-image"></i> Grayscale</a>
+            <a href="/remove_background"><i class="fas fa-cut"></i> Remove BG</a>
+            <a href="/convert_to_pdf"><i class="fas fa-file-pdf"></i> To PDF</a>
+            <a href="/negative_effect"><i class="fas fa-adjust"></i> Negative</a>
+        </div>
+    </div>
+
+    <div class="container result-container">
+        <h1>Negative Effect Result</h1>
+        <div class="image-display">
+            <div class="image-box">
+                <h3>Original Image</h3>
+                <img src="/img_upload/{{ original }}" alt="Original Image">
+            </div>
+            <div class="image-box">
+                <h3>Negative Image</h3>
+                <img src="/img_processed/{{ processed }}" alt="Negative Image">
+            </div>
+        </div>
+        <a href="/img_processed/{{ processed }}" download class="download-btn">Download Processed Image</a>
+        <a href="/negative_effect" class="back-btn">Apply Another Negative Effect</a>
+        <a href="/" class="back-home-btn">Back to Home</a>
+    </div>
+
+    <script src="/script/result.js"></script> 
+</body>
+</html>
