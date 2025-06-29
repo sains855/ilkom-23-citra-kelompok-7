@@ -496,6 +496,46 @@ def result_negative_effect():
                            original=request.args.get('original'),
                            processed=request.args.get('processed'))
 # --- Akhir Rute Baru untuk Efek Negatif ---
-    
+
+@app.route('/compress_image', methods=['GET', 'POST'])
+def compress_image():
+    if request.method == 'POST':
+        file = request.files.get('image')
+        quality = int(request.form.get('quality', 60))
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(upload_path)
+
+            img = Image.open(upload_path).convert('RGB')
+            compressed_filename = f"compressed_{filename}"
+            compressed_path = os.path.join(app.config['PROCESSED_FOLDER'], compressed_filename)
+            img.save(compressed_path, format='JPEG', quality=quality)
+
+            original_size = os.path.getsize(upload_path)
+            compressed_size = os.path.getsize(compressed_path)
+            original_kb = original_size / 1024
+            compressed_kb = compressed_size / 1024
+
+            if compressed_size > 0:
+                compression_ratio = original_size / compressed_size
+            else:
+                compression_ratio = 0
+
+            if original_size > 0:
+                compression_efficiency = (1 - (compressed_size / original_size)) * 100
+            else:
+                compression_efficiency = 0
+
+            return render_template('result_compress.html',
+                                   original=filename,
+                                   compressed=compressed_filename,
+                                   original_size_kb=round(original_kb, 2),
+                                   compressed_size_kb=round(compressed_kb, 2),
+                                   compression_ratio=round(compression_ratio, 2),
+                                   compression_efficiency=round(compression_efficiency, 2))
+    return render_template('compress.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
