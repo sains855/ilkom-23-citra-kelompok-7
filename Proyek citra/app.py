@@ -5,6 +5,7 @@ import numpy as np
 from rembg import remove
 from PIL import Image
 import img2pdf
+import io
 from datetime import datetime
 import cv2
 
