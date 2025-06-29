@@ -9,6 +9,7 @@ from datetime import datetime
 import cv2
 
 # Initialize Flask app
+# HANYA SATU INISIALISASI OBJEK APP INI YANG DIBUTUHKAN
 app = Flask(__name__, template_folder='view')
 
 # Configuration
@@ -28,7 +29,7 @@ os.makedirs(app.config['MULTI_PDF_FOLDER'], exist_ok=True)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg'}
 
-# NumPy-based Grayscale Conversion with Multiple Methods
+# ✅ NumPy-based Grayscale Conversion with Multiple Methods
 def numpy_grayscale_conversion(img_array, method='weighted'):
     """
     Convert RGB image to grayscale using NumPy with different methods
@@ -50,7 +51,7 @@ def numpy_grayscale_conversion(img_array, method='weighted'):
         return gray.astype(np.uint8)
     return img_array
 
-# NumPy-based Background Removal Enhancement
+# ✅ NumPy-based Background Removal Enhancement
 def numpy_background_processing(img_array):
     """
     Enhanced background processing using NumPy operations
@@ -88,7 +89,7 @@ def numpy_background_processing(img_array):
     
     return img_array
 
-# NumPy-based Image Preprocessing for PDF
+# ✅ NumPy-based Image Preprocessing for PDF
 def numpy_pdf_preprocessing(img_paths):
     """
     Preprocess images using NumPy before PDF conversion
@@ -150,6 +151,29 @@ def numpy_pdf_preprocessing(img_paths):
         processed_paths.append(processed_path)
     
     return processed_paths
+
+# **FITUR BARU: Efek Negatif (NumPy-based)**
+def numpy_negative_effect(img_array):
+    """
+    Apply negative effect to an image using NumPy.
+    For an 8-bit image, this means subtracting each pixel value from 255.
+    """
+    # Pastikan gambar adalah RGB, jika ada alpha channel, abaikan atau sesuaikan
+    if len(img_array.shape) == 3:
+        # Jika gambar adalah RGBA, terapkan negatif hanya pada channel RGB
+        if img_array.shape[2] == 4:
+            rgb_channels = img_array[..., :3]
+            negative_rgb = 255 - rgb_channels
+            # Gabungkan kembali dengan alpha channel asli
+            return np.dstack((negative_rgb, img_array[..., 3])).astype(np.uint8)
+        # Jika gambar adalah RGB
+        elif img_array.shape[2] == 3:
+            return (255 - img_array).astype(np.uint8)
+    # Jika gambar grayscale
+    elif len(img_array.shape) == 2:
+        return (255 - img_array).astype(np.uint8)
+    
+    return img_array # Kembalikan asli jika tidak dapat diproses
 
 
 # Static file routes
@@ -400,20 +424,32 @@ def negative_effect():
             original_filename = secure_filename(file.filename)
             upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
             file.save(upload_path)
+
+            # Load image and convert to NumPy array
+            img = Image.open(upload_path)
+            img_np = np.array(img)
+
+            # Apply NumPy-based negative effect
+            negative_np = numpy_negative_effect(img_np) # <--- Ini bagian yang diubah
             
-            # Untuk sementara, kita akan langsung redirect ke halaman hasil
-            # tanpa memproses gambar, karena logikanya belum ditambahkan.
-            # Anda akan melihat gambar asli di tempat gambar 'negative'.
+            # Convert back to PIL Image
+            negative_img = Image.fromarray(negative_np)
+
+            # Save processed image
+            processed_filename = f"negative_{original_filename}"
+            processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
+            negative_img.save(processed_path)
+
             return redirect(url_for('result_negative_effect',
                                     original=original_filename,
-                                    processed=original_filename)) # Menggunakan original sebagai placeholder
+                                    processed=processed_filename))
     return render_template('negative_effect.html')
 
 @app.route('/result_negative_effect')
 def result_negative_effect():
     return render_template('result_negative_effect.html',
                            original=request.args.get('original'),
-                           processed=request.args.get('processed')) # Ini akan menampilkan original sebagai negative
+                           processed=request.args.get('processed'))
 # --- Akhir Rute Baru untuk Efek Negatif ---
     
 if __name__ == '__main__':
