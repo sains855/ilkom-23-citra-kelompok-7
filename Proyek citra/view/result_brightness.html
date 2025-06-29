@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brightness Result</title>
   <style>
-    /* ====== Global ====== */
+   /* ===== Global Styles ===== */
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #d3b28f; /* Background utama */
+  background-color: #d3b28f;
   color: #3c2c1e;
   min-height: 100vh;
 }
 
-/* ====== Header ====== */
+/* ===== Header ===== */
 .header {
   background-color: #e5c6a4;
   padding: 20px 40px;
@@ -26,49 +26,45 @@ body {
 }
 
 .logo {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   color: #b3545e;
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 24px;
 }
 
 .nav-links a {
   text-decoration: none;
   color: #b3545e;
-  font-size: 18px;
   font-weight: bold;
-  transition: color 0.3s ease;
+  font-size: 16px;
+  transition: color 0.3s;
 }
 
 .nav-links a:hover {
   color: #8e3f48;
 }
 
-/* ====== Main Container ====== */
+/* ===== Container Layout ===== */
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 50px 20px;
   display: flex;
-  gap: 40px;
+  gap: 32px;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
 }
 
-/* ====== Image Section ====== */
+/* ===== Image Section ===== */
 .image-section {
   flex: 1;
-  max-width: 600px;
-}
-
-.image-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  min-width: 300px;
+  max-width: 500px;
 }
 
 .image-box {
@@ -78,45 +74,39 @@ body {
 .image-box img {
   width: 100%;
   height: auto;
-  object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* ====== Controls Panel ====== */
+/* ===== Control Panel ===== */
 .controls-panel {
   flex: 1;
-  max-width: 420px;
+  max-width: 360px;
   background-color: #f2dfc6;
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .controls-panel h2 {
+  font-size: 24px;
   color: #3c2c1e;
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .controls-panel p {
-  color: #5f4632;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
-  margin-bottom: 30px;
+  color: #5f4632;
+  margin-bottom: 25px;
 }
 
-/* ====== File Upload ====== */
-.file-input-section {
-  margin-bottom: 30px;
-}
-
+/* ===== File Input ===== */
 .file-input-btn {
   background-color: #e5c6a4;
   border: 1px solid #d4b597;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 8px 14px;
+  border-radius: 8px;
   font-size: 14px;
   color: #3c2c1e;
   cursor: pointer;
@@ -127,17 +117,16 @@ body {
   background-color: #dcb590;
 }
 
-/* ====== Brightness Slider ====== */
+/* ===== Brightness Slider ===== */
 .brightness-control {
-  margin-bottom: 30px;
+  margin-top: 25px;
 }
 
 .brightness-label {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
+  margin-bottom: 8px;
   color: #3c2c1e;
-  margin-bottom: 10px;
-  display: block;
 }
 
 .brightness-slider {
@@ -151,35 +140,36 @@ body {
 
 .brightness-slider::-webkit-slider-thumb {
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   background-color: #ec946a;
   border-radius: 50%;
-  cursor: pointer;
   border: 2px solid white;
+  cursor: pointer;
 }
 
 .brightness-slider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   background-color: #ec946a;
   border-radius: 50%;
   border: 2px solid white;
   cursor: pointer;
 }
 
-/* ====== Action Button ====== */
+/* ===== Action Button ===== */
 .process-btn {
   width: 100%;
   background-color: #ec946a;
   color: white;
-  padding: 15px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 15px;
   font-weight: bold;
   border: none;
-  border-radius: 25px;
+  border-radius: 20px;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  margin-top: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
@@ -188,7 +178,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* ====== Download Buttons ====== */
+/* ===== Download Section ===== */
 .download-section {
   text-align: center;
   margin-top: 30px;
@@ -196,13 +186,14 @@ body {
 
 .btn {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 10px 20px;
   background-color: #ec946a;
   color: white;
-  border-radius: 30px;
   text-decoration: none;
+  font-size: 14px;
+  border-radius: 20px;
+  margin: 8px;
   font-weight: 600;
-  margin: 10px;
   transition: all 0.3s ease;
 }
 
@@ -219,7 +210,6 @@ body {
   background-color: #357abd;
 }
 
-   
  </style>
 </head>
 <body>
