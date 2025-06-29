@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Negative Effect Result - GreeyPix</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <title>GreeyPix - Negative Effect Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="/style/result.css"> 
-</head>
+    <link rel="stylesheet" href="/style/result.css"> </head>
 <body>
+
     <div class="header">
         <h2>GreeyPix</h2>
         <div class="nav">
             <a href="/"><i class="fas fa-home"></i> Home</a>
-            <a href="/add_gambar"><i class="fas fa-image"></i> Grayscale</a>
-            <a href="/remove_background"><i class="fas fa-cut"></i> Remove BG</a>
-            <a href="/convert_to_pdf"><i class="fas fa-file-pdf"></i> To PDF</a>
-            <a href="/negative_effect"><i class="fas fa-adjust"></i> Negative</a>
-        </div>
+            <a href="/negative_effect"><i class="fas fa-adjust"></i> Apply Again</a> </div>
     </div>
 
-    <div class="container result-container">
-        <h1>Negative Effect Result</h1>
-        <div class="image-display">
-            <div class="image-box">
-                <h3>Original Image</h3>
-                <img src="/img_upload/{{ original }}" alt="Original Image">
+    <div class="content">
+        <h1>Efek Negatif Gambar Anda! 🌌</h1>
+        <p>Gambar Anda kini telah diubah dengan efek negatif, membalikkan warna untuk menciptakan kontras yang unik dan tampilan yang dramatis.</p>
+
+        <div class="before-after">
+            <div class="frame">
+                <span>Original</span>
+                <img id="img-before" src="{{ url_for('uploaded_image', filename=original) }}" 
+                    alt="Original" style="width:100%; display:block;">
             </div>
-            <div class="image-box">
-                <h3>Negative Image</h3>
-                <img src="/img_processed/{{ processed }}" alt="Negative Image">
+
+            <div class="frame">
+                <span>Result </span>
+                <img id="img-after" src="{{ url_for('processed_image', filename=processed) }}" 
+                    alt="Negative" style="width:100%; display:block;">
             </div>
         </div>
-        <a href="/img_processed/{{ processed }}" download class="download-btn">Download Processed Image</a>
-        <a href="/negative_effect" class="back-btn">Apply Another Negative Effect</a>
-        <a href="/" class="back-home-btn">Back to Home</a>
-    </div>
 
-    <script src="/script/result.js"></script> 
-</body>
+        <a href="{{ url_for('processed_image', filename=processed) }}" download="{{ processed }}">
+            <button class="download-btn">Download Negative Image</button>
+        </a>
+        
+    </div>
+    <script src="/script/result.js"></script> </body>
 </html>
