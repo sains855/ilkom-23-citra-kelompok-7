@@ -28,7 +28,7 @@ inputImage.addEventListener('change', function (e) {
 cropButton.addEventListener('click', function () {
     if (cropper) {
         const cropData = cropper.getData();   // ✅ Ambil koordinat crop
-        console.log('Koordinat Crop:', cropData);  // ✅ Cetak di Console browser
+        console.log('Koordinat Crop:', cropData); 
 
         const canvas = cropper.getCroppedCanvas();
         canvas.toBlob(function (blob) {
