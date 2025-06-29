@@ -386,6 +386,22 @@ def process_crop():
     if not file:
         return "No image received", 400
 
+    try:
+        x = float(request.form.get('x', 0))
+        y = float(request.form.get('y', 0))
+        width = float(request.form.get('width', 0))
+        height = float(request.form.get('height', 0))
+    except (TypeError, ValueError):
+        return "Invalid crop coordinates", 400
+
+    x_int = round(x)
+    y_int = round(y)
+    width_int = round(width)
+    height_int = round(height)
+
+    print(f"Koordinat Crop Diterima dari Frontend: (x: {x_int}, y: {y_int}, width: {width_int}, height: {height_int})")
+    print(f"Crop area: Mulai dari ({x_int}, {y_int}) sampai ({x_int + width_int}, {y_int + height_int})")
+
     filename = f"cropped_{datetime.now().strftime('%Y%m%d%H%M%S')}.png"
     save_path = os.path.join(app.config['PROCESSED_FOLDER'], filename)
     file.save(save_path)
