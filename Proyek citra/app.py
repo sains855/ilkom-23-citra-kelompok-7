@@ -9,6 +9,7 @@ from datetime import datetime
 import cv2
 
 # Initialize Flask app
+# HANYA SATU INISIALISASI OBJEK APP INI YANG DIBUTUHKAN
 app = Flask(__name__, template_folder='view')
 
 # Configuration
@@ -175,6 +176,7 @@ def serve_image(filename):
 # Home Page
 @app.route('/')
 def index():
+    # Ini adalah baris yang perlu dikoreksi jika sebelumnya 'index.html'
     return render_template('welcome.html')
 
 # ✅ Enhanced Grayscale conversion using NumPy
@@ -371,21 +373,57 @@ def result_pdf():
 def download_pdf(filename):
     return send_from_directory(app.config['PDF_FOLDER'], filename, as_attachment=True)
 
-
-app = Flask(__name__, static_folder='static', template_folder='templates')
-
-@app.route('/')
-def index():
-    return render_template("index.html")
+@app.route('/brightnes_adj')
+def add_adj():
+    return render_template('brightnes_adj.html')
 
 @app.route('/adjust', methods=['POST'])
 def adjust_brightness():
-    if 'image' not in request.files:
-        return "No image provided", 400
+    file = request.files.get('image')
+    
+    if file and allowed_file(file.filename):
+        # Get brightness factor from form
+        try:
+            brightness_factor = float(request.form.get('brightness', 1.0))
+        except (TypeError, ValueError):
+            brightness_factor = 1.0
+        
+        # Secure filename and save uploaded file
+        original_filename = secure_filename(file.filename)
+        upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
+        file.save(upload_path)
 
-    file = request.files['image']
-    if file.filename == '':
-        return "No selected file", 400
+        # Load image and convert to NumPy array
+        img = Image.open(upload_path).convert('RGB')
+        img_array = np.array(img, dtype=np.float32)
+        
+        # Apply brightness adjustment using NumPy
+        adjusted_array = np.clip(img_array * brightness_factor, 0, 255).astype(np.uint8)
+        
+        # Convert back to PIL Image
+        adjusted_img = Image.fromarray(adjusted_array)
+
+        # Save processed image with same filename as original
+        processed_filename = original_filename  # Menggunakan nama file yang sama
+        processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
+        adjusted_img.save(processed_path)
+
+        return redirect(url_for('result_brightness', 
+                                original=original_filename, 
+                                processed=processed_filename,
+                                brightness=brightness_factor))
+    
+    return redirect(url_for('add_adj'))
+
+@app.route('/result_brightness')
+def result_brightness():
+    filename = request.args.get('original')
+    processed = request.args.get('processed')
+    brightness = request.args.get('brightness')
+    return render_template('result_brightness.html', 
+                           original=filename, 
+                           processed=processed,
+                           brightness=brightness)
     
 if __name__ == '__main__':
     app.run(debug=True)
