@@ -402,12 +402,80 @@ def add_adj():
 
 @app.route('/adjust', methods=['POST'])
 def adjust_brightness():
-    if 'image' not in request.files:
-        return "No image provided", 400
+    file = request.files.get('image')
+    
+    if file and allowed_file(file.filename):
+        try:
+            brightness_factor = float(request.form.get('brightness', 1.0))
+        except (TypeError, ValueError):
+            brightness_factor = 1.0
+        
+        original_filename = secure_filename(file.filename)
+        upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
+        file.save(upload_path)
 
-    file = request.files['image']
-    if file.filename == '':
-        return "No selected file", 400
+        img = Image.open(upload_path).convert('RGB')
+        img_array = np.array(img, dtype=np.float32)
+        adjusted_array = np.clip(img_array * brightness_factor, 0, 255).astype(np.uint8)
+        adjusted_img = Image.fromarray(adjusted_array)
+
+        processed_filename = original_filename
+        processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
+        adjusted_img.save(processed_path)
+
+        return redirect(url_for('result_brightness', 
+                                original=original_filename, 
+                                processed=processed_filename,
+                                brightness=brightness_factor))
+    
+    return redirect(url_for('add_adj'))
+
+@app.route('/result_brightness')
+def result_brightness():
+    filename = request.args.get('original')
+    processed = request.args.get('processed')
+    brightness = request.args.get('brightness')
+    return render_template('result_brightness.html', 
+                           original=filename, 
+                           processed=processed,
+                           brightness=brightness)
+
+# --- Rute Baru untuk Efek Negatif (Belum ada logika pemrosesan gambar) ---
+@app.route('/negative_effect', methods=['GET', 'POST'])
+def negative_effect():
+    if request.method == 'POST':
+        file = request.files.get('image')
+        if file and allowed_file(file.filename):
+            original_filename = secure_filename(file.filename)
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
+            file.save(upload_path)
+
+            # Load image and convert to NumPy array
+            img = Image.open(upload_path)
+            img_np = np.array(img)
+
+            # Apply NumPy-based negative effect
+            negative_np = numpy_negative_effect(img_np) # <--- Ini bagian yang diubah
+            
+            # Convert back to PIL Image
+            negative_img = Image.fromarray(negative_np)
+
+            # Save processed image
+            processed_filename = f"negative_{original_filename}"
+            processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
+            negative_img.save(processed_path)
+
+            return redirect(url_for('result_negative_effect',
+                                    original=original_filename,
+                                    processed=processed_filename))
+    return render_template('negative_effect.html')
+
+@app.route('/result_negative_effect')
+def result_negative_effect():
+    return render_template('result_negative_effect.html',
+                           original=request.args.get('original'),
+                           processed=request.args.get('processed'))
+# --- Akhir Rute Baru untuk Efek Negatif ---
     
 if __name__ == '__main__':
     app.run(debug=True)
