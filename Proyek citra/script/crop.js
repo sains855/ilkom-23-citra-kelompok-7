@@ -27,10 +27,19 @@ inputImage.addEventListener('change', function (e) {
 
 cropButton.addEventListener('click', function () {
     if (cropper) {
+        const cropData = cropper.getData();   // ✅ Ambil koordinat crop
+        console.log('Koordinat Crop:', cropData);  // ✅ Cetak di Console browser
+
         const canvas = cropper.getCroppedCanvas();
         canvas.toBlob(function (blob) {
             const formData = new FormData();
             formData.append('croppedImage', blob, 'cropped.png');
+
+            // Kalau mau kirim koordinat ke backend:
+            formData.append('x', cropData.x);
+            formData.append('y', cropData.y);
+            formData.append('width', cropData.width);
+            formData.append('height', cropData.height);
 
             fetch('/process_crop', {
                 method: 'POST',
@@ -49,4 +58,3 @@ cropButton.addEventListener('click', function () {
         }, 'image/png');
     }
 });
-
