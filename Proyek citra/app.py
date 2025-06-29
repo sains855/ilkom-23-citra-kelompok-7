@@ -371,13 +371,6 @@ def result_pdf():
 def download_pdf(filename):
     return send_from_directory(app.config['PDF_FOLDER'], filename, as_attachment=True)
 
-
-app = Flask(__name__, static_folder='static', template_folder='templates')
-
-@app.route('/')
-def index():
-    return render_template("index.html")
-
 @app.route('/adjust', methods=['POST'])
 def adjust_brightness():
     if 'image' not in request.files:
