@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Image - GreeyPix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/welcome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <link rel="stylesheet" href="/style/crop.css">
+      
+</head>
+<body>
+
+    <div class="header">
+        <h2>GreeyPix</h2>
+        <div class="nav">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/add_gambar"><i class="fas fa-image"></i> Grayscale</a>
+            <a href="/remove_background"><i class="fas fa-cut"></i> Remove BG</a>
+            <a href="/convert_to_pdf"><i class="fas fa-file-pdf"></i> To PDF</a>
+            <a href="/crop_image" class="active"><i class="fas fa-crop"></i> Crop Image</a>
+        </div>
+    </div>
+
+    <div class="pdf-container">
+        <div class="upload-section">
+            <h1><i class="fas fa-crop"></i> Crop Image</h1>
+            <p class="description">Gunakan fitur crop untuk memotong bagian gambar sesuai keinginan Anda. Upload gambar, atur area crop, dan proses hasilnya!</p>
+
+            <!-- Upload Area -->
+            <div class="upload-area" id="uploadArea" onclick="document.getElementById('inputImage').click();">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 50px; color: #999;"></i>
+                <p>Click atau drag gambar ke sini untuk mulai cropping</p>
+                <input type="file" id="inputImage" accept="image/*" style="display: none;">
+            </div>
+
+            <!-- Preview Gambar -->
+            <div id="previewContainer" style="text-align:center;">
+                <img id="image">
+            </div>
+
+            <!-- Tombol Crop -->
+            <button id="cropButton" class="btn-crop">
+                <i class="fas fa-scissors"></i> Crop & Upload
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script src="/script/crop.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Result - GreeyPix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/welcome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="header">
+        <h2>GreeyPix</h2>
+        <div class="nav">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/add_gambar"><i class="fas fa-image"></i> Grayscale</a>
+            <a href="/remove_background"><i class="fas fa-cut"></i> Remove BG</a>
+            <a href="/convert_to_pdf"><i class="fas fa-file-pdf"></i> To PDF</a>
+            <a href="/crop_image" class="active"><i class="fas fa-crop"></i> Crop Image</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1><i class="fas fa-crop"></i> Hasil Crop Gambar</h1>
+
+        <div class="frame" style="max-width: 700px; margin: 30px auto;">
+            <img src="{{ url_for('processed_image', filename=cropped) }}" alt="Hasil Crop" style="width: 100%; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.2);">
+        </div>
+
+        <div class="download-section">
+            <a href="{{ url_for('processed_image', filename=cropped) }}" download class="download-btn">
+                <i class="fas fa-download"></i> Download Gambar
+            </a>
+            <a href="/crop_image" class="convert-again-btn">
+                <i class="fas fa-arrow-left"></i> Crop Gambar Lain
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
