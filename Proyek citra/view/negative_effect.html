@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Negative Effect - GreeyPix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/add.css"> 
+</head>
+<body>
+    <div class="header">
+        <h2>GreeyPix</h2>
+        <div class="nav">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/add_gambar"><i class="fas fa-image"></i> Grayscale</a>
+            <a href="/remove_background"><i class="fas fa-cut"></i> Remove BG</a>
+            <a href="/convert_to_pdf"><i class="fas fa-file-pdf"></i> To PDF</a>
+            <a href="/negative_effect"><i class="fas fa-adjust"></i> Negative</a> 
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Apply Negative Effect</h1>
+        <form method="POST" enctype="multipart/form-data" action="/negative_effect">
+            <label for="imageUpload" class="custom-file-upload">
+                <i class="fas fa-cloud-upload-alt"></i> Upload Image
+            </label>
+            <input type="file" name="image" id="imageUpload" accept="image/png, image/jpeg, image/jpg" onchange="displayFileName()">
+            <span id="file-name">No file chosen</span>
+            <button type="submit" class="submit-btn">Apply Negative</button>
+        </form>
+    </div>
+
+    <script>
+        function displayFileName() {
+            const input = document.getElementById('imageUpload');
+            const fileNameSpan = document.getElementById('file-name');
+            if (input.files.length > 0) {
+                fileNameSpan.textContent = input.files[0].name;
+            } else {
+                fileNameSpan.textContent = 'No file chosen';
+            }
+        }
+    </script>
+    <script src="/script/add.js"></script> 
+</body>
+</html>
