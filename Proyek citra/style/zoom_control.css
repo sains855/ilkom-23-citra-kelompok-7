@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #c4a886; 
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  color: #3d2c1e;
+}
+
+.zoom-controls {
+  margin-top: 30px;
+}
+
+.zoom-controls button {
+  background-color: #e19566;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+}
+
+.zoom-controls button:hover {
+  background-color: #d18358;
+  transform: scale(1.05);
+}
+
+.image-container {
+  margin-top: 20px;
+}
+
+#zoom-image {
+  max-width: 90%;
+  height: auto;
+  transition: transform 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
