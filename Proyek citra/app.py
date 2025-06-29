@@ -9,6 +9,7 @@ from PIL import Image
 import img2pdf
 from datetime import datetime
 import cv2
+import uuid
 
 # Initialize Flask app
 # HANYA SATU INISIALISASI OBJEK APP INI YANG DIBUTUHKAN
@@ -536,6 +537,38 @@ def compress_image():
                                    compression_ratio=round(compression_ratio, 2),
                                    compression_efficiency=round(compression_efficiency, 2))
     return render_template('compress.html')
+@app.route('/zoom', methods=['GET', 'POST'])
+def zoom():
+    if request.method == 'POST':
+        file = request.files['image']
+        if file:
+            # Simpan gambar original
+            filename = secure_filename(file.filename)
+            unique_id = str(uuid.uuid4())
+            original_name = f"{unique_id}_original.jpg"
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], original_name)
+            file.save(file_path)
+
+            # Ubah ke grayscale
+            img = Image.open(file_path).convert('L')
+            processed_name = f"{unique_id}_grayscale.jpg"
+            processed_path = os.path.join(app.config['UPLOAD_FOLDER'], processed_name)
+            img.save(processed_path)
+
+            # Redirect ke halaman hasil
+            return redirect(url_for('result', original=original_name, processed=processed_name))
+    return '''
+        <h2>Unggah Gambar</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <input type="submit" value="Upload">
+        </form>
+    '''
+@app.route('/result')
+def result():
+    original = request.args.get('original')
+    processed = request.args.get('processed')
+    return render_template('result.html', original=original, processed=processed)
 
 if __name__ == '__main__':
     app.run(debug=True)
