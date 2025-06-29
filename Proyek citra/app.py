@@ -1,3 +1,5 @@
+import base64
+from io import BytesIO
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 import os
@@ -366,6 +368,12 @@ def result_pdf():
     return render_template('result_pdf.html',
                            original_filenames=request.args.get('original_filenames', '').split(','),
                            pdf_file=request.args.get('pdf_file'))
+@app.route('/result_crop')
+def result_crop():
+    cropped = request.args.get('cropped')
+    if not cropped:
+        return "No cropped image found.", 400
+    return render_template('result_crop.html', cropped=cropped)
 
 @app.route('/download_pdf/<filename>')
 def download_pdf(filename):
@@ -377,80 +385,12 @@ def add_adj():
 
 @app.route('/adjust', methods=['POST'])
 def adjust_brightness():
-    file = request.files.get('image')
-    
-    if file and allowed_file(file.filename):
-        try:
-            brightness_factor = float(request.form.get('brightness', 1.0))
-        except (TypeError, ValueError):
-            brightness_factor = 1.0
-        
-        original_filename = secure_filename(file.filename)
-        upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
-        file.save(upload_path)
+    if 'image' not in request.files:
+        return "No image provided", 400
 
-        img = Image.open(upload_path).convert('RGB')
-        img_array = np.array(img, dtype=np.float32)
-        adjusted_array = np.clip(img_array * brightness_factor, 0, 255).astype(np.uint8)
-        adjusted_img = Image.fromarray(adjusted_array)
-
-        processed_filename = original_filename
-        processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
-        adjusted_img.save(processed_path)
-
-        return redirect(url_for('result_brightness', 
-                                original=original_filename, 
-                                processed=processed_filename,
-                                brightness=brightness_factor))
-    
-    return redirect(url_for('add_adj'))
-
-@app.route('/result_brightness')
-def result_brightness():
-    filename = request.args.get('original')
-    processed = request.args.get('processed')
-    brightness = request.args.get('brightness')
-    return render_template('result_brightness.html', 
-                           original=filename, 
-                           processed=processed,
-                           brightness=brightness)
-
-# --- Rute Baru untuk Efek Negatif (Belum ada logika pemrosesan gambar) ---
-@app.route('/negative_effect', methods=['GET', 'POST'])
-def negative_effect():
-    if request.method == 'POST':
-        file = request.files.get('image')
-        if file and allowed_file(file.filename):
-            original_filename = secure_filename(file.filename)
-            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
-            file.save(upload_path)
-
-            # Load image and convert to NumPy array
-            img = Image.open(upload_path)
-            img_np = np.array(img)
-
-            # Apply NumPy-based negative effect
-            negative_np = numpy_negative_effect(img_np) # <--- Ini bagian yang diubah
-            
-            # Convert back to PIL Image
-            negative_img = Image.fromarray(negative_np)
-
-            # Save processed image
-            processed_filename = f"negative_{original_filename}"
-            processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
-            negative_img.save(processed_path)
-
-            return redirect(url_for('result_negative_effect',
-                                    original=original_filename,
-                                    processed=processed_filename))
-    return render_template('negative_effect.html')
-
-@app.route('/result_negative_effect')
-def result_negative_effect():
-    return render_template('result_negative_effect.html',
-                           original=request.args.get('original'),
-                           processed=request.args.get('processed'))
-# --- Akhir Rute Baru untuk Efek Negatif ---
+    file = request.files['image']
+    if file.filename == '':
+        return "No selected file", 400
     
 if __name__ == '__main__':
     app.run(debug=True)

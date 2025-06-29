@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/style/welcome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
 </head>
 <body>
     <div class="header">
@@ -17,6 +18,7 @@
             <a href="/add_gambar"><i class="fas fa-image"></i> Grayscale</a>
             <a href="/remove_background"><i class="fas fa-cut"></i> Remove BG</a>
             <a href="/convert_to_pdf"><i class="fas fa-file-pdf"></i> To PDF</a>
+            <a href="/crop_image"><i class="fas fa-crop-alt"></i> Crop Image</a>
         </div>
     </div>
 
@@ -64,8 +66,22 @@
                 <a href="/convert_to_pdf" class="feature-btn">Convert to PDF</a>
             </div>
         </div>
-    </div>
 
+        <!-- Crop Image Feature -->
+       <div class="feature-card">
+    <div class="image-comparison">
+        <div class="image-wrapper">
+            <img src="/img/crop-preview.png" class="before-image" alt="Crop Image Preview">
+        </div>
+    </div>
+    <div class="feature-description">
+        <h2>Crop Image</h2>
+        <p>Upload and crop your images easily before processing</p>
+        <a href="/crop_image" class="feature-btn">Go to Crop Image</a>
+    </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script src="/script/crop.js"></script>
     <script src="/script/welcome.js"></script>
 </body>
 </html>
