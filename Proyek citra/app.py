@@ -5,12 +5,10 @@ import numpy as np
 from rembg import remove
 from PIL import Image
 import img2pdf
-import io
 from datetime import datetime
 import cv2
 
 # Initialize Flask app
-# HANYA SATU INISIALISASI OBJEK APP INI YANG DIBUTUHKAN
 app = Flask(__name__, template_folder='view')
 
 # Configuration
@@ -30,7 +28,7 @@ os.makedirs(app.config['MULTI_PDF_FOLDER'], exist_ok=True)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg'}
 
-# ✅ NumPy-based Grayscale Conversion with Multiple Methods
+# NumPy-based Grayscale Conversion with Multiple Methods
 def numpy_grayscale_conversion(img_array, method='weighted'):
     """
     Convert RGB image to grayscale using NumPy with different methods
@@ -52,7 +50,7 @@ def numpy_grayscale_conversion(img_array, method='weighted'):
         return gray.astype(np.uint8)
     return img_array
 
-# ✅ NumPy-based Background Removal Enhancement
+# NumPy-based Background Removal Enhancement
 def numpy_background_processing(img_array):
     """
     Enhanced background processing using NumPy operations
@@ -90,7 +88,7 @@ def numpy_background_processing(img_array):
     
     return img_array
 
-# ✅ NumPy-based Image Preprocessing for PDF
+# NumPy-based Image Preprocessing for PDF
 def numpy_pdf_preprocessing(img_paths):
     """
     Preprocess images using NumPy before PDF conversion
@@ -153,14 +151,17 @@ def numpy_pdf_preprocessing(img_paths):
     
     return processed_paths
 
+
 # Static file routes
 @app.route('/style/<path:filename>')
 def serve_style(filename):
-    return send_from_directory('style', filename)
+    # Mengarahkan ke folder 'style' di Proyek citra
+    return send_from_directory(os.path.join(app.root_path, 'style'), filename)
 
 @app.route('/script/<path:filename>')
 def serve_script(filename):
-    return send_from_directory('script', filename)
+    # Mengarahkan ke folder 'script' di Proyek citra
+    return send_from_directory(os.path.join(app.root_path, 'script'), filename)
 
 @app.route('/img_upload/<path:filename>')
 def uploaded_image(filename):
@@ -172,15 +173,18 @@ def processed_image(filename):
 
 @app.route('/img/<path:filename>')
 def serve_image(filename):
-    return send_from_directory('img', filename)
+    # Ini mungkin perlu disesuaikan jika gambar contoh ada di 'Proyek citra/img'
+    # atau di subfolder lain yang perlu diakses.
+    # Untuk saat ini, asumsikan ini merujuk ke folder 'img' di root proyek Flask.
+    return send_from_directory(os.path.join(app.root_path, 'img'), filename)
+
 
 # Home Page
 @app.route('/')
 def index():
-    # Ini adalah baris yang perlu dikoreksi jika sebelumnya 'index.html'
     return render_template('welcome.html')
 
-# ✅ Enhanced Grayscale conversion using NumPy
+# Enhanced Grayscale conversion using NumPy
 @app.route('/add_gambar', methods=['GET', 'POST'])
 def add_gambar():
     if request.method == 'POST':
@@ -192,29 +196,18 @@ def add_gambar():
             upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(upload_path)
 
-            # Load image and convert to NumPy array
             img = Image.open(upload_path).convert('RGB')
             img_np = np.array(img)
-
-            # Apply NumPy-based grayscale conversion
             gray_np = numpy_grayscale_conversion(img_np, method)
             
-            # Additional NumPy processing: histogram equalization
-            # Calculate histogram
             hist, bins = np.histogram(gray_np.flatten(), 256, [0, 256])
-            
-            # Calculate cumulative distribution
             cdf = hist.cumsum()
             cdf_normalized = cdf * 255 / cdf[-1]
-            
-            # Apply histogram equalization using NumPy
             gray_equalized = np.interp(gray_np.flatten(), bins[:-1], cdf_normalized)
             gray_equalized = gray_equalized.reshape(gray_np.shape).astype(np.uint8)
             
-            # Convert back to PIL Image
             gray_img = Image.fromarray(gray_equalized)
 
-            # Save processed image
             processed_filename = f"gray_{method}_{filename}"
             processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
             gray_img.save(processed_path)
@@ -229,7 +222,7 @@ def result_gambar():
     processed = request.args.get('processed', filename)
     return render_template('result.html', original=filename, processed=processed)
 
-# ✅ Enhanced Remove background using NumPy
+# Enhanced Remove background using NumPy
 @app.route('/remove_background', methods=['GET', 'POST'])
 def remove_background():
     if request.method == 'POST':
@@ -239,44 +232,32 @@ def remove_background():
             upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
             file.save(upload_path)
 
-            # Load image and apply NumPy preprocessing
             img = Image.open(upload_path)
             img_array = np.array(img)
-            
-            # Apply NumPy-based preprocessing
             enhanced_array = numpy_background_processing(img_array)
             enhanced_img = Image.fromarray(enhanced_array)
 
-            # Remove background using rembg on enhanced image
             result = remove(enhanced_img)
 
-            # Convert to NumPy for post-processing
             result_np = np.array(result)
             
-            # Advanced NumPy post-processing for transparent images
             if result_np.shape[-1] == 4:  # RGBA
-                # Separate RGB and Alpha channels
                 rgb = result_np[..., :3].astype(np.float32)
                 alpha = result_np[..., 3].astype(np.float32) / 255.0
                 
-                # Apply alpha blending with white background
                 white_bg = np.ones_like(rgb) * 255
                 blended = rgb * alpha[..., np.newaxis] + white_bg * (1 - alpha[..., np.newaxis])
                 
-                # Edge smoothing using NumPy
                 alpha_smooth = alpha.copy()
                 kernel = np.array([[1, 2, 1], [2, 4, 2], [1, 2, 1]]) / 16.0
                 
-                # Apply smoothing to alpha channel
                 padded_alpha = np.pad(alpha, 1, mode='edge')
                 for y in range(alpha.shape[0]):
                     for x in range(alpha.shape[1]):
                         alpha_smooth[y, x] = np.sum(padded_alpha[y:y+3, x:x+3] * kernel)
                 
-                # Reconstruct RGBA with smoothed alpha
                 result_np = np.dstack([rgb.astype(np.uint8), (alpha_smooth * 255).astype(np.uint8)])
 
-            # Save processed image
             processed_filename = f"nobg_{os.path.splitext(original_filename)[0]}.png"
             processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
             Image.fromarray(result_np).save(processed_path)
@@ -292,7 +273,7 @@ def result_remove_bg():
                            original=request.args.get('original'),
                            processed=request.args.get('processed'))
 
-# ✅ Enhanced Convert multiple images to PDF with NumPy preprocessing
+# Enhanced Convert multiple images to PDF with NumPy preprocessing
 @app.route('/convert_to_pdf', methods=['GET', 'POST'])
 def convert_to_pdf():
     if request.method == 'POST':
@@ -311,18 +292,15 @@ def convert_to_pdf():
                 saved_files.append(path)
 
         if saved_files:
-            # Apply NumPy preprocessing if requested
             if enhance_images:
                 processed_files = numpy_pdf_preprocessing(saved_files)
                 files_for_pdf = processed_files
             else:
                 files_for_pdf = saved_files
             
-            # Convert to PDF with img2pdf
             pdf_filename = f"converted_{datetime.now().strftime('%Y%m%d%H%M%S')}.pdf"
             pdf_path = os.path.join(app.config['PDF_FOLDER'], pdf_filename)
             
-            # Additional NumPy-based optimization: resize large images
             optimized_files = []
             max_size = (1200, 1600)  # A4-like ratio
             
@@ -330,14 +308,11 @@ def convert_to_pdf():
                 img = Image.open(img_path)
                 img_array = np.array(img)
                 
-                # Check if resizing is needed
                 if img_array.shape[0] > max_size[1] or img_array.shape[1] > max_size[0]:
-                    # Calculate new dimensions using NumPy
                     h, w = img_array.shape[:2]
                     scale = min(max_size[0]/w, max_size[1]/h)
                     new_w, new_h = int(w * scale), int(h * scale)
                     
-                    # Simple NumPy-based resizing (nearest neighbor)
                     y_indices = np.round(np.linspace(0, h-1, new_h)).astype(int)
                     x_indices = np.round(np.linspace(0, w-1, new_w)).astype(int)
                     
@@ -346,7 +321,6 @@ def convert_to_pdf():
                     else:
                         resized = img_array[np.ix_(y_indices, x_indices)]
                     
-                    # Save resized image
                     resized_img = Image.fromarray(resized)
                     base_name = os.path.splitext(os.path.basename(img_path))[0]
                     resized_path = os.path.join(app.config['PROCESSED_FOLDER'], f"{base_name}_resized.jpg")
@@ -355,7 +329,6 @@ def convert_to_pdf():
                 else:
                     optimized_files.append(img_path)
             
-            # Create PDF
             with open(pdf_path, "wb") as f:
                 f.write(img2pdf.convert(optimized_files))
                 
@@ -383,29 +356,21 @@ def adjust_brightness():
     file = request.files.get('image')
     
     if file and allowed_file(file.filename):
-        # Get brightness factor from form
         try:
             brightness_factor = float(request.form.get('brightness', 1.0))
         except (TypeError, ValueError):
             brightness_factor = 1.0
         
-        # Secure filename and save uploaded file
         original_filename = secure_filename(file.filename)
         upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
         file.save(upload_path)
 
-        # Load image and convert to NumPy array
         img = Image.open(upload_path).convert('RGB')
         img_array = np.array(img, dtype=np.float32)
-        
-        # Apply brightness adjustment using NumPy
         adjusted_array = np.clip(img_array * brightness_factor, 0, 255).astype(np.uint8)
-        
-        # Convert back to PIL Image
         adjusted_img = Image.fromarray(adjusted_array)
 
-        # Save processed image with same filename as original
-        processed_filename = original_filename  # Menggunakan nama file yang sama
+        processed_filename = original_filename
         processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
         adjusted_img.save(processed_path)
 
@@ -425,6 +390,31 @@ def result_brightness():
                            original=filename, 
                            processed=processed,
                            brightness=brightness)
+
+# --- Rute Baru untuk Efek Negatif (Belum ada logika pemrosesan gambar) ---
+@app.route('/negative_effect', methods=['GET', 'POST'])
+def negative_effect():
+    if request.method == 'POST':
+        file = request.files.get('image')
+        if file and allowed_file(file.filename):
+            original_filename = secure_filename(file.filename)
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], original_filename)
+            file.save(upload_path)
+            
+            # Untuk sementara, kita akan langsung redirect ke halaman hasil
+            # tanpa memproses gambar, karena logikanya belum ditambahkan.
+            # Anda akan melihat gambar asli di tempat gambar 'negative'.
+            return redirect(url_for('result_negative_effect',
+                                    original=original_filename,
+                                    processed=original_filename)) # Menggunakan original sebagai placeholder
+    return render_template('negative_effect.html')
+
+@app.route('/result_negative_effect')
+def result_negative_effect():
+    return render_template('result_negative_effect.html',
+                           original=request.args.get('original'),
+                           processed=request.args.get('processed')) # Ini akan menampilkan original sebagai negative
+# --- Akhir Rute Baru untuk Efek Negatif ---
     
 if __name__ == '__main__':
     app.run(debug=True)
