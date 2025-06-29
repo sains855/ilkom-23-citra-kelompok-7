@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Kompres Gambar - GreeyPix</title>
-  <link rel="stylesheet" href="{{ url_for('style', filename='compress.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='compress.css') }}">
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
 
-  <h2>🗜️ Kompresi Ukuran Gambar</h2>
+  <div class="container">
+    <h2>🗜️ Kompresi Ukuran Gambar</h2>
 
-  <form action="{{ url_for('compress_image') }}" method="post" enctype="multipart/form-data">
-    <label>Pilih Gambar:</label><br>
-    <input type="file" name="image" required><br><br>
+    <form action="{{ url_for('compress_image') }}" method="post" enctype="multipart/form-data" id="compressForm">
+      <label for="image">Pilih Gambar:</label>
+      <input type="file" name="image" id="image" accept="image/*" required>
 
-    <label>Kualitas Kompresi (10–100):</label><br>
-    <input type="number" name="quality" value="60" min="10" max="100"><br><br>
+      <label for="quality">Kualitas Kompresi (10–100):</label>
+      <input type="number" name="quality" id="quality" value="60" min="10" max="100" required>
 
-    <button type="submit">Kompres Gambar</button>
-  </form>
+      <button type="submit">Kompres Gambar</button>
+    </form>
+  </div>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
