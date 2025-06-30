@@ -4,8 +4,9 @@ Fitur ini memungkinkan pengguna untuk mengubah gambar berwarna menjadi gambar gr
 
 2. Tampilan Visual di Bagian Kiri Halaman
 
-Bagian kiri halaman berfungsi sebagai etalase visual utama dari layanan GreyPix. Di sana ditampilkan sebuah gambar bunga matahari yang terbagi dua: bagian kiri berwarna, dan bagian kanan dalam versi hitam-putih (greyscale). Visual ini secara intuitif dan efektif menunjukkan fungsi utama dari website — yaitu mengubah gambar berwarna menjadi skala abu-abu.
-Pemilihan bunga matahari sebagai objek juga memperkuat kesan estetika alami, dan simbolisasi transformasi dari warna ke keabuan.
+Pada Bagian kiri halaman berperan sebagai etalase visual utama dari layanan GreyPix. Di area ini ditampilkan gambar bunga matahari yang terbagi dua: sisi kiri tampil berwarna, sedangkan sisi kanan dalam nuansa hitam-putih (greyscale). Tampilan ini secara visual menyampaikan fungsi inti dari situs, yakni mengonversi gambar berwarna menjadi versi skala abu-abu.
+
+Pemilihan bunga matahari sebagai objek mendukung kesan estetika alami dan memperkuat makna simbolis dari proses transformasi warna menjadi keabuan.
 
 3. Fokus Informasi di Sisi Kanan Halaman
 

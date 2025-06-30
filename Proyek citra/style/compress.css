@@ -1,0 +1,67 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #d7bfa7; /* beige/coklat muda */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 22px;
+  color: #a25a5a; /* warna pink tua */
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #6d3f3f; /* warna label agak gelap */
+}
+
+input[type="file"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c9a28d;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  background-color: #f9f2ed;
+  color: #5c3b3b;
+}
+
+input[type="number"]:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: #a25a5a;
+  box-shadow: 0 0 3px #a25a5a;
+}
+
+button {
+  background-color: #a25a5a;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #8e4848;
+}

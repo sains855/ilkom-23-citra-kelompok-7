@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreeyPix - Negative Effect Feature</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/add.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="header">
+        <h2>GreeyPix</h2>
+        <div class="nav">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/add_gambar"><i class="fas fa-image"></i> Grayscale</a>
+            <a href="/remove_background"><i class="fas fa-cut"></i> Remove BG</a>
+            <a href="/convert_to_pdf"><i class="fas fa-file-pdf"></i> To PDF</a>
+            <a href="/brightnes_adj"><i class="fas fa-sun"></i> Brightness Adjustment </a>
+            <a href="/crop_image"><i class="fas fa-crop-alt"></i> Crop Image</a>
+            <a href="/compress_image"><i class="fas fa-file-archive"></i> Compress Image</a>
+            <a href="/negative_effect"><i class="fas fa-adjust"></i> Negative</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="image-section">
+            <img src="/img/negatif (2).png" alt="Negative Effect Example">
+        </div>
+        
+        <div class="text-section">
+            <h1>Efek Negatif</h1>
+            <p>Ubah citra Anda menjadi negatif dengan satu klik! Fitur ini membalikkan nilai piksel warna, menciptakan tampilan artistik yang unik dan menarik. Unggah gambar Anda untuk melihat perbedaannya!</p>
+            <form action="/negative_effect" method="POST" enctype="multipart/form-data" id="uploadForm">
+                <input type="file" accept="image/png, image/jpeg, image/jpg" name="image" id="fileInput" style="display: none;" onchange="document.getElementById('uploadForm').submit();">
+                <button class="btn" type="button" onclick="document.getElementById('fileInput').click();">Apply Negative</button>
+            </form>
+        </div> 
+    </div>
+    <script src="/script/add.js"></script> </body>
+</html>

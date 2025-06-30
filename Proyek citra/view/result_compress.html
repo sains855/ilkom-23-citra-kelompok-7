@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hasil Kompresi</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <h2>📊 Hasil Kompresi Gambar</h2>
+
+  <div class="image-row">
+    <div>
+      <h3>Gambar Asli</h3>
+      <img src="{{ url_for('uploaded_image', filename=original) }}" width="300">
+      <p>Ukuran Asli: {{ original_size_kb }} KB</p>
+    </div>
+    <div>
+      <h3>Gambar Terkompresi</h3>
+      <img src="{{ url_for('processed_image', filename=compressed) }}" width="300">
+      <p>Ukuran Hasil: {{ compressed_size_kb }} KB</p>
+      <p>Rasio Kompresi: {{ compression_ratio }}x</p>
+      <p>Efisiensi: {{ compression_efficiency }}%</p>
+      <a href="{{ url_for('processed_image', filename=compressed) }}" download>⬇️ Unduh Gambar</a>
+    </div>
+  </div>
+
+</body>
+</html>

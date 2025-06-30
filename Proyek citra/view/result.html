@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreeyPix - Before After</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/style/result.css">
 </head>
 
@@ -14,8 +15,8 @@
     <div class="header">
         <h2>GreeyPix</h2>
         <div class="nav">
-            <a href="/">Home</a>
-            <a href="/add_gambar">Tambah Gambar</a>
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/add_gambar"><i class="fas fa-image"></i> Unggah Lagi</a>
         </div>
     </div>
 
@@ -26,18 +27,22 @@
         <div class="before-after">
             <div class="frame">
                 <span>Original</span>
-                <!-- gambar original masuk sini -->
-                <img id="img-before" src="{{ url_for('uploaded_image', filename=original) }}" alt="Before">
+                <!-- Tambahkan style untuk memastikan gambar muncul -->
+                <img id="img-before" src="{{ url_for('uploaded_image', filename=original) }}" 
+                    alt="Before" style="width:100%; display:block;">
             </div>
 
             <div class="frame">
                 <span>Result</span>
-                <!-- gambar hasil grayscale masuk sini -->
-                <img id="img-after" src="{{ url_for('processed_image', filename=processed) }}" alt="After">
+                <img id="img-after" src="{{ url_for('processed_image', filename=processed) }}" 
+                    alt="After" style="width:100%; display:block;">
             </div>
         </div>
 
-        <button class="download-btn">Download</button>
+        <a href="{{ url_for('processed_image', filename=processed) }}" download="{{ processed }}">
+            <button class="download-btn">Download</button>
+        </a>
+        
     </div>
     <script src="/script/result.js"></script>
 </body>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreeyPix - Remove Background Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/result.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <h2>GreeyPix</h2>
+        <div class="nav">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/remove_background"><i class="fas fa-image"></i> Unggah Lagi</a>
+
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Hasil Remove Background 🖼️</h1>
+        <p>Gambar Anda telah diproses dan latar belakangnya berhasil dihilangkan.</p>
+
+        <div class="before-after">
+            <div class="frame">
+                <span>Original</span>
+                <img id="img-before" 
+                     src="{{ url_for('uploaded_image', filename=original) }}" 
+                     alt="Before" 
+                     style="background-color: #f0f0f0; width:100%; display:block;">
+            </div>
+        
+            <div class="frame">
+                <span>Result</span>
+                <!-- Untuk gambar dengan transparansi, tambahkan background pattern -->
+                <div style="width:100%; height:100%; background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAQSURBVDiRY/j//z8D1WA0DA4AAKCTBYdpQ0xLAAAAAElFTkSuQmCC');">
+                    <img id="img-after" 
+                         src="{{ url_for('processed_image', filename=processed) }}" 
+                         alt="After" 
+                         style="width:100%; display:block;">
+                </div>
+            </div>
+        </div>
+
+        <a href="{{ url_for('processed_image', filename=processed) }}" download="{{ processed }}">
+            <button class="download-btn">Download</button>
+        </a>
+        
+    </div>
+    <script src="../script/result.js"></script>
+</body>
+
+</html>

@@ -4,6 +4,8 @@ body {
   background-color: #c4a886;
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
 }
 
 .header {
@@ -30,13 +32,15 @@ body {
   color: #b56b6b;
   font-size: 18px;
   font-weight: bold;
-  transition: color 0.3s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.3s ease;
   font-family: 'Poppins', sans-serif;
+  display: inline-block;
 }
 
 .nav a:hover {
-  color: #e19566;
+  transform: scale(1.2);
 }
+
 
 .content {
   text-align: center;
@@ -46,7 +50,7 @@ body {
 .content h1 {
   font-family: 'Playfair Display', serif;
   font-size: 40px;
-  color: #3d2c1e;
+  color: #36271b;
   margin-bottom: 10px;
 }
 
@@ -55,7 +59,7 @@ body {
   font-size: 16px;
   max-width: 600px;
   margin: 0 auto 40px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .before-after {
@@ -68,7 +72,7 @@ body {
 .frame {
   width: 300px;
   height: 200px;
-  background-color: #fff;
+  background-color: #fefdfd;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   display: flex;

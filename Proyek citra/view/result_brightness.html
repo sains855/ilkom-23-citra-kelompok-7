@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brightness Result</title>
+  <style>
+   /* ===== Global Styles ===== */
+body {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  padding: 0;
+  background-color: #d3b28f;
+  color: #3c2c1e;
+  min-height: 100vh;
+}
+
+/* ===== Header ===== */
+.header {
+  background-color: #e5c6a4;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #b3545e;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #b3545e;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #8e3f48;
+}
+
+/* ===== Container Layout ===== */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ===== Image Section ===== */
+.image-section {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+}
+
+.image-box {
+  position: relative;
+}
+
+.image-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Control Panel ===== */
+.controls-panel {
+  flex: 1;
+  max-width: 360px;
+  background-color: #f2dfc6;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.controls-panel h2 {
+  font-size: 24px;
+  color: #3c2c1e;
+  margin-bottom: 10px;
+}
+
+.controls-panel p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #5f4632;
+  margin-bottom: 25px;
+}
+
+/* ===== File Input ===== */
+.file-input-btn {
+  background-color: #e5c6a4;
+  border: 1px solid #d4b597;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #3c2c1e;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-input-btn:hover {
+  background-color: #dcb590;
+}
+
+/* ===== Brightness Slider ===== */
+.brightness-control {
+  margin-top: 25px;
+}
+
+.brightness-label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #3c2c1e;
+}
+
+.brightness-slider {
+  width: 100%;
+  height: 6px;
+  background-color: #d4b597;
+  border-radius: 3px;
+  appearance: none;
+  outline: none;
+}
+
+.brightness-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: #ec946a;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.brightness-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background-color: #ec946a;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+/* ===== Action Button ===== */
+.process-btn {
+  width: 100%;
+  background-color: #ec946a;
+  color: white;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.process-btn:hover {
+  background-color: #d67e57;
+  transform: translateY(-2px);
+}
+
+/* ===== Download Section ===== */
+.download-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ec946a;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 20px;
+  margin: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #d67e57;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #4a90e2;
+}
+
+.btn-secondary:hover {
+  background-color: #357abd;
+}
+
+ </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">GreeyPix</div>
+    <div class="nav-links">
+      <a href="/"><i class="fas fa-home"></i> Home</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Left Side - Images -->
+    <div class="image-section">
+      {% if original and processed %}
+      <div class="image-container">
+        <div class="image-box">
+          <div class="image-label">Before</div>
+          <img src="{{ url_for('uploaded_image', filename=original) }}" 
+               alt="Original Image">
+        </div>
+        
+        <div class="image-box">
+          <div class="image-label">After</div>
+          <img src="{{ url_for('processed_image', filename=processed) }}" 
+               alt="Processed Image">
+        </div>
+      </div>
+      
+      <!-- Download Links -->
+      <div class="download-section">
+        <a href="{{ url_for('processed_image', filename=processed) }}" 
+           download="{{ processed }}" 
+           class="btn">
+          Download Adjusted Image
+        </a>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Navigation -->
+    <div style="text-align: center; margin: 30px 0; padding-top: 20px; border-top: 1px solid #ddd;">
+      <a href="/brightnes_adj" class="btn"> Adjust Another Image</a>
+      <a href="/" class="btn btn-secondary"> Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    // Update brightness value display when slider changes
+    const slider = document.querySelector('.brightness-slider');
+    const valueDisplay = document.querySelector('.brightness-value');
+    
+    if (slider && valueDisplay) {
+      slider.addEventListener('input', function() {
+        valueDisplay.textContent = this.value;
+        
+        // Update slider background to show progress
+        const percentage = ((this.value - this.min) / (this.max - this.min)) * 100;
+        this.style.background = `linear-gradient(to right, #4A90E2 0%, #4A90E2 ${percentage}%, #E5E5E5 ${percentage}%, #E5E5E5 100%)`;
+      });
+    }
+  </script>
+</body>
+</html>

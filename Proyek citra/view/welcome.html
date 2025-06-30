@@ -5,32 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreeyPix</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/style/welcome.css">
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
 </head>
 <body>
     <div class="header">
         <h2>GreeyPix</h2>
         <div class="nav">
-            <a href="/">Home</a>
-            <a href="/add_gambar">Tambah Gambar</a>
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/add_gambar"><i class="fas fa-image"></i> Grayscale</a>
+            <a href="/remove_background"><i class="fas fa-cut"></i> Remove BG</a>
+            <a href="/convert_to_pdf"><i class="fas fa-file-pdf"></i> To PDF</a>
+            <a href="/brightnes_adj"><i class="fas fa-sun"></i> Brightness Adjustment </a>
+            <a href="/crop_image"><i class="fas fa-crop-alt"></i> Crop Image</a>
+            <a href="/compress_image"><i class="fas fa-file-archive"></i> Compress Image</a>
+            <a href="/negative_effect"><i class="fas fa-adjust"></i> Negative</a>
         </div>
     </div>
-    <div class="container">
-        <div class="images">
-            <div class="image-container image-before">
-                <img src="/img/image-before.jpg" alt="Gambar contoh greyscale">
+
+    <div class="features-container">
+        <div class="feature-card">
+            <div class="image-comparison">
+                <div class="image-wrapper">
+                    <img src="/img/image-before.jpg" class="before-image" alt="Original Image">
+                    <img src="/img/image-after.jpg" class="after-image" alt="Grayscale Image">
+                </div>
             </div>
-            <div class="image-container image-after">
-                <img src="/img/image-after.jpg" alt="Gambar contoh greyscale">
+            <div class="feature-description">
+                <h2>Grayscale Conversion</h2>
+                <p>Transform your colorful images into elegant grayscale versions</p>
+                <a href="/add_gambar" class="feature-btn">Try Grayscale</a>
             </div>
         </div>
-        <div class="text-section">
-            <h1>WELCOME TO <br><strong>GreeyPix</strong></h1>
-            <p>Dengan GreeyPix, Anda dapat mengabadikan momen dalam skala keabuan</p>
-            <a href="/add_gambar"><button class="btn">Get Started</button></a>
+
+        <div class="feature-card">
+            <div class="image-comparison">
+                <div class="image-wrapper">
+                    <img src="/img/image-before2.png" class="before-image" alt="Original Image">
+                    <img src="/img/after-remove-bg.png" class="after-image" alt="Background Removed">
+                </div>
+            </div>
+            <div class="feature-description">
+                <h2>Background Removal</h2>
+                <p>Automatically remove backgrounds from your images</p>
+                <a href="/remove_background" class="feature-btn">Remove Background</a>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="image-comparison">
+                <div class="image-wrapper">
+                    <img src="/img/convert_pdf.png" class="pdf-image" alt="PDF Conversion">
+                </div>
+            </div>
+            <div class="feature-description">
+                <h2>PDF Conversion</h2>
+                <p>Convert your images to PDF documents easily</p>
+                <a href="/convert_to_pdf" class="feature-btn">Convert to PDF</a>
+            </div>
+        </div>
+
+        
+        <div class="feature-card">
+            <div class="image-comparison">
+                <div class="image-wrapper">
+                    <img src="/img/brightness_before.jpg" class="before-image" alt="Before Brightness adjustment">
+                    <img src="/img/brightness_after.jpg" class="after-image" alt="After Brightness adjustment">
+                </div>
+            </div>
+            <div class="feature-description">
+                <h2>Brightness Adjustment</h2>
+                <p>Adjust the brightness of your images to enhance clarity and visual appeal</p>
+                <a href="/brightnes_adj" class="feature-btn">Adjust Brightness</a>
+            </div>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="image-comparison">
+                <div class="image-wrapper">
+                    <img src="/img/crop-preview.png" class="before-image" alt="Crop Image Preview">
+                </div>
+            </div>
+            <div class="feature-description">
+                <h2>Crop Image</h2>
+                <p>Upload and crop your images easily before processing</p>
+                <a href="/crop_image" class="feature-btn">Go to Crop Image</a>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="image-comparison">
+                <div class="image-wrapper">
+                    <img src="/img/compress-before.jpg" class="before-image" alt="Original Image">
+                    <img src="/img/compress-after.jpg" class="after-image" alt="Compressed Image">
+                </div>
+            </div>
+            <div class="feature-description">
+                <h2>Compress Image</h2>
+                <p>Reduce image file size without losing much quality</p>
+                <a href="/compress_image" class="feature-btn">Compress Now</a>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="image-comparison">
+                <div class="image-wrapper">
+                    <img src="/img/image-before2.png" class="before-image" alt="Original Image for Negative">
+                    <img src="/img/negatif.png" class="after-image" alt="Negative Effect Result">
+                </div>
+            </div>
+            <div class="feature-description">
+                <h2>Negative Effect</h2>
+                <p>Invert the colors of your images for a striking and artistic negative effect.</p>
+                <a href="/negative_effect" class="feature-btn">Apply Negative Effect</a>
+            </div>
+        </div>
     </div>
-</div>
-<script src="/script/welcome.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script src="/script/crop.js"></script>
+    <script src="/script/welcome.js"></script>
 </body>
 </html>

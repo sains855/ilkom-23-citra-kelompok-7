@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kompres Gambar - GreeyPix</title>
+  <link rel="stylesheet" href="/style/compress.css">
+  <script defer src="/script/compress.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🗜️ Kompresi Ukuran Gambar</h2>
+
+    <form action="{{ url_for('compress_image') }}" method="post" enctype="multipart/form-data" id="compressForm">
+      <label for="image">Pilih Gambar:</label>
+      <input type="file" name="image" id="image" accept="image/*" required>
+
+      <label for="quality">Kualitas Kompresi (10–100):</label>
+      <input type="number" name="quality" id="quality" value="60" min="10" max="100" required>
+
+      <button type="submit">Kompres Gambar</button>
+    </form>
+  </div>
+
+</body>
+</html>

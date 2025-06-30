@@ -26,6 +26,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
@@ -169,3 +170,22 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Ignore uploaded images
+img/img_upload/
+
+# Ignore processed images
+img/img_processed/
+
+# Ignore PDF outputs
+img/pdf_output/
+img/multi_pdf_output/
+
+# Optional: If you want to ignore all files in 'img' except specific ones,
+# or just ensure .DS_Store or other OS files are ignored
+.DS_Store
+Thumbs.db
+*.log
+venv/
+__pycache__/
+*.pyc
