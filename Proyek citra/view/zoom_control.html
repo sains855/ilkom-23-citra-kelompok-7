@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Kontrol Zoom</title>
-    <link rel="stylesheet" href="../style/result.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontrol Zoom Gambar</title>
+
+  <!-- Font Google agar konsisten dengan GreeyPix -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- CSS Zoom -->
+  <link rel="stylesheet" href="/style/result.css">
 </head>
 <body>
-    <h2>Kontrol Zoom Gambar</h2>
 
-    <div class="zoom-controls">
-        <button onclick="zoomIn()">Perbesar</button>
-        <button onclick="zoomOut()">Perkecil</button>
-        <button onclick="resetZoom()">Reset</button>
-    </div>
+  <h2>Hasil Gambar Hitam Putih</h2>
+  <p>Gunakan tombol di bawah untuk mengatur ukuran gambar hasil grayscale Anda.</p>
 
-    <div class="image-container">
-        <img id="zoom-image" src="" alt="Hasil Gambar">
-    </div>
+  <!-- Kontrol Zoom -->
+  <div class="zoom-controls">
+    <button onclick="zoomIn()">Perbesar</button>
+    <button onclick="zoomOut()">Perkecil</button>
+    <button onclick="resetZoom()">Reset</button>
+  </div>
 
-    <script src="../script/result.js"></script>
+  <!-- Gambar -->
+  <div class="image-container">
+    <img id="zoom-image" src="/static/uploads/images.jpg" alt="Gambar Hasil Grayscale">
+  </div>
+
+  <!-- JS Zoom -->
+  <script src="/script/result_zoom.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Hasil Kompresi Gambar</title>
-  <link rel="stylesheet" href="{{ url_for('serve_style', filename='result.css') }}">
+  <link rel="stylesheet" href="{{ url_for('serve_style', filename='compress_result.css') }}">
 </head>
 <body>
 
@@ -11,11 +11,11 @@
   <h2>📊 Hasil Kompresi Gambar</h2>
 
   <h3>Gambar Asli</h3>
-  <img src="{{ url_for('static', filename='img/img_upload/' + original) }}" alt="Original Image">
+  <img src="{{ url_for('uploaded_image', filename=original) }}" alt="Original Image">
   <p>Ukuran Asli: {{ original_size_kb }} KB</p>
 
   <h3>Gambar Terkompresi</h3>
-  <img src="{{ url_for('static', filename='img/img_processed/' + compressed) }}" alt="Compressed Image">
+  <img src="{{ url_for('processed_image', filename=compressed) }}" alt="Compressed Image">
   <p>Ukuran Terkompresi: {{ compressed_size_kb }} KB</p>
   <p>Efisiensi Kompresi: {{ compression_efficiency }}%</p>
   <p>Rasio Kompresi: {{ compression_ratio }}</p>
