@@ -2,28 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hasil Kompresi</title>
-  <link rel="stylesheet" href="/Proyek citra/style/compress_result.css">
+  <title>Hasil Kompresi Gambar</title>
+  <link rel="stylesheet" href="{{ url_for('serve_style', filename='result.css') }}">
 </head>
 <body>
 
+<div class="container">
   <h2>📊 Hasil Kompresi Gambar</h2>
 
-  <div class="image-row">
-    <div>
-      <h3>Gambar Asli</h3>
-      <img src="{{ url_for('uploaded_image', filename=original) }}" width="300">
-      <p>Ukuran Asli: {{ original_size_kb }} KB</p>
-    </div>
-    <div>
-      <h3>Gambar Terkompresi</h3>
-      <img src="{{ url_for('processed_image', filename=compressed) }}" width="300">
-      <p>Ukuran Hasil: {{ compressed_size_kb }} KB</p>
-      <p>Rasio Kompresi: {{ compression_ratio }}x</p>
-      <p>Efisiensi: {{ compression_efficiency }}%</p>
-      <a href="{{ url_for('processed_image', filename=compressed) }}" download>⬇️ Unduh Gambar</a>
-    </div>
-  </div>
+  <h3>Gambar Asli</h3>
+  <img src="{{ url_for('static', filename='img/img_upload/' + original) }}" alt="Original Image">
+  <p>Ukuran Asli: {{ original_size_kb }} KB</p>
+
+  <h3>Gambar Terkompresi</h3>
+  <img src="{{ url_for('static', filename='img/img_processed/' + compressed) }}" alt="Compressed Image">
+  <p>Ukuran Terkompresi: {{ compressed_size_kb }} KB</p>
+  <p>Efisiensi Kompresi: {{ compression_efficiency }}%</p>
+  <p>Rasio Kompresi: {{ compression_ratio }}</p>
+</div>
 
 </body>
 </html>
