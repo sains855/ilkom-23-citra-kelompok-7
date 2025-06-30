@@ -434,8 +434,63 @@ def result_brightness():
                            original=filename, 
                            processed=processed,
                            brightness=brightness)
+    
+@app.route('/sharpen_image', methods=['GET', 'POST'])
+def sharpen_image():
+    if request.method == 'POST':
+        file = request.files.get('image')
+        strength = float(request.form.get('strength', 1.0))
 
+        if file and allowed_file(file.filename):
+            print("\n--- [DEBUG] Mulai proses pertajam gambar ---")
+            filename = secure_filename(file.filename)
+            print(f"[DEBUG] File diterima: {filename}")
 
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(upload_path)
+            print(f"[DEBUG] File asli BERHASIL disimpan di: {upload_path}")
+
+            try:
+                print("[DEBUG] Mencoba membuka gambar dengan Pillow...")
+                img = Image.open(upload_path).convert('RGB')
+                print("[DEBUG] Gambar BERHASIL dibuka dan dikonversi ke RGB.")
+
+                img_np = np.array(img)
+                print("[DEBUG] Gambar BERHASIL dikonversi ke NumPy array.")
+
+                print("[DEBUG] Mencoba mempertajam gambar...")
+                sharpened_np = numpy_sharpen_image(img_np, strength)
+                print("[DEBUG] Gambar BERHASIL dipertajam.")
+
+                sharpened_img = Image.fromarray(sharpened_np)
+                print("[DEBUG] Gambar hasil BERHASIL dikonversi kembali ke Pillow Image.")
+
+                base_name, _ = os.path.splitext(filename)
+                processed_filename = f"sharpened_{base_name}.png"
+                processed_path = os.path.join(app.config['PROCESSED_FOLDER'], processed_filename)
+
+                print(f"[DEBUG] Mencoba menyimpan file hasil ke: {processed_path}")
+                sharpened_img.save(processed_path)
+                print("[DEBUG] File hasil BERHASIL disimpan.")
+                print("--- [DEBUG] Proses Selesai ---\n")
+
+                return redirect(url_for('result_sharpen', original=filename, processed=processed_filename))
+
+            except Exception as e:
+                print(f"\n!!!!!! TERJADI ERROR !!!!!!")
+                print(f"[DEBUG] Error: {e}")
+                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+                return "Terjadi error saat memproses gambar. Periksa terminal untuk detail.", 500
+        else:
+            print("[DEBUG] Proses dihentikan, file tidak valid atau tidak diunggah.")
+
+    return render_template('sharpen.html')
+    
+@app.route('/result_sharpen')
+def result_sharpen():
+    return render_template('result_sharpen.html',
+                           original=request.args.get('original'),
+                           processed=request.args.get('processed'))
 
 # **FITUR BARU: Efek Negatif (NumPy-based)**
 def numpy_negative_effect(img_array):
@@ -460,6 +515,31 @@ def numpy_negative_effect(img_array):
     
     return img_array # Kembalikan asli jika tidak dapat diproses
 
+#  Fungsi untuk mempertajam gambar menggunakan NumPy
+def numpy_sharpen_image(img_array, strength=1.0):
+    """
+    Mempertajam gambar menggunakan kernel penajaman dengan NumPy.
+    """
+    # Kernel penajaman standar
+    sharpen_kernel_base = np.array([[0, -1, 0],
+                                    [-1, 5, -1],
+                                    [0, -1, 0]], dtype=np.float32)
+    
+    # Kernel identitas (tidak melakukan apa-apa)
+    identity_kernel = np.array([[0, 0, 0],
+                                [0, 1, 0],
+                                [0, 0, 0]], dtype=np.float32)
+
+    # Campurkan kernel berdasarkan kekuatan
+    kernel = identity_kernel + (sharpen_kernel_base - identity_kernel) * strength
+    
+    # Terapkan kernel menggunakan OpenCV filter2D untuk performa
+    sharpened_array = cv2.filter2D(img_array, -1, kernel)
+    
+    # Pastikan nilai tetap dalam rentang yang valid
+    sharpened_array = np.clip(sharpened_array, 0, 255)
+    
+    return sharpened_array.astype(np.uint8)
 
 # --- Rute Baru untuk Efek Negatif (Belum ada logika pemrosesan gambar) ---
 @app.route('/negative_effect', methods=['GET', 'POST'])
