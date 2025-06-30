@@ -557,13 +557,7 @@ def zoom():
 
             # Redirect ke halaman hasil
             return redirect(url_for('result', original=original_name, processed=processed_name))
-    return '''
-        <h2>Unggah Gambar</h2>
-        <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="image">
-            <input type="submit" value="Upload">
-        </form>
-    '''
+    return render_template('zoom_control.html')
 @app.route('/result')
 def result():
     original = request.args.get('original')
