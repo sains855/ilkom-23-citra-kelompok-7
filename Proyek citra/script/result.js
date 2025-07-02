@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 let scale = 1.0;
 const img = document.getElementById('zoom-image');
 
@@ -24,7 +23,6 @@ function applyZoom() {
     img.style.transformOrigin = 'center';
 }
 
-=======
 // Efek fade-in saat halaman pertama kali dimuat
 document.addEventListener("DOMContentLoaded", function () {
     // Tambahkan class fade ke body
@@ -37,4 +35,3 @@ document.addEventListener("DOMContentLoaded", function () {
         body.style.opacity = "1";
     });
 });
->>>>>>> 61137ae9c0fc972839ef5a5dbd218075c2337226
