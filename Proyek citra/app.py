@@ -617,27 +617,6 @@ def compress_image():
                                    compression_ratio=round(compression_ratio, 2),
                                    compression_efficiency=round(compression_efficiency, 2))
     return render_template('compress.html')
-@app.route('/zoom', methods=['GET', 'POST'])
-def zoom():
-    if request.method == 'POST':
-        file = request.files['image']
-        if file:
-            # Simpan gambar original
-            filename = secure_filename(file.filename)
-            unique_id = str(uuid.uuid4())
-            original_name = f"{unique_id}_original.jpg"
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], original_name)
-            file.save(file_path)
-
-            # Ubah ke grayscale
-            img = Image.open(file_path).convert('L')
-            processed_name = f"{unique_id}_grayscale.jpg"
-            processed_path = os.path.join(app.config['UPLOAD_FOLDER'], processed_name)
-            img.save(processed_path)
-
-            # Redirect ke halaman hasil
-            return redirect(url_for('result', original=original_name, processed=processed_name))
-    return render_template('zoom_control.html')
 @app.route('/result')
 def result():
     original = request.args.get('original')
