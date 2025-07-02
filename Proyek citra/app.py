@@ -32,7 +32,6 @@ os.makedirs(app.config['MULTI_PDF_FOLDER'], exist_ok=True)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg'}
 
-# ✅ NumPy-based Grayscale Conversion with Multiple Methods
 def numpy_grayscale_conversion(img_array, method='weighted'):
     """
     Convert RGB image to grayscale using NumPy with different methods
@@ -54,7 +53,7 @@ def numpy_grayscale_conversion(img_array, method='weighted'):
         return gray.astype(np.uint8)
     return img_array
 
-# ✅ NumPy-based Background Removal Enhancement
+
 def numpy_background_processing(img_array):
     """
     Enhanced background processing using NumPy operations
@@ -92,7 +91,7 @@ def numpy_background_processing(img_array):
     
     return img_array
 
-# ✅ NumPy-based Image Preprocessing for PDF
+
 def numpy_pdf_preprocessing(img_paths):
     """
     Preprocess images using NumPy before PDF conversion
